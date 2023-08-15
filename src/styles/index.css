@@ -1,0 +1,1466 @@
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: sans-serif;
+}
+
+:root {
+  --nav-bar-color: rgb(248, 112, 135);
+  --primary-color: rgb(248, 203, 211);
+  --container-color: rgb(250, 230, 234);
+  --container-rightSide-color: rgb(250, 220, 225);
+}
+
+.header {
+  width: 100%;
+  background-color: var(--primary-color);
+  position: fixed;
+}
+
+.display-none {
+  display: none;
+}
+
+/* Navigation Start */
+.navigation {
+  width: 65%;
+  margin: auto;
+  position: relative;
+  height: 10rem;
+  color: var(--nav-bar-color);
+  z-index: 99;
+}
+
+.navigation--title {
+  display: none;
+}
+
+.navigation--logo {
+  position: absolute;
+}
+
+.navigation--logo img {
+  width: 10rem;
+}
+
+.navigation--user-account a {
+  text-decoration: none;
+  color: var(--nav-bar-color);
+}
+
+.navigation--navigation-bar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.navigation--navigation-bar nav ul {
+  display: flex;
+  gap: 2rem;
+  font-size: 2rem;
+}
+
+.navigation--navigation-bar nav ul .fav-num {
+  border: 0.1rem solid var(--nav-bar-color);
+  padding: 0.1rem 0.5rem;
+  border-radius: 50%;
+  font-size: 1.5rem;
+}
+
+/* .navigation--navigation-bar nav ul li:first-child {
+  color: var(--primary-color);
+  background-color: var(--nav-bar-color);
+} */
+
+.navigation--navigation-bar nav ul li {
+  list-style: none;
+  white-space: nowrap;
+}
+
+.navigation--navigation-bar nav ul li:hover a {
+  color: var(--primary-color);
+  background-color: var(--nav-bar-color);
+}
+
+.navigation--navigation-bar nav ul li a {
+  text-decoration: none;
+  color: var(--nav-bar-color);
+  font-weight: 600;
+  padding: 0.7rem 1.5rem;
+  border-radius: 1rem;
+}
+
+/* .navigation--navigation-bar nav ul li:first-child a {
+  color: var(--primary-color);
+  background-color: var(--nav-bar-color);
+} */
+
+.navigation--navigation-bar-selected {
+  color: var(--primary-color);
+  background-color: var(--nav-bar-color);
+}
+
+.navigation--navigation-bar--bottom {
+  display: none;
+}
+
+.navigation--user-account {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(0, -50%);
+  display: flex;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.navigation--menu-bar {
+  display: none;
+}
+
+.navigation--user-account--log-in {
+  margin-right: 2rem;
+}
+/* Navigation End */
+
+/* Home Page Start */
+.imgCollection-container {
+  margin-top: 10.5rem;
+  position: absolute;
+  width: 65%;
+  background-color: var(--container-color);
+  left: 50%;
+  transform: translate(-50%);
+  z-index: -1;
+}
+
+.imgCollection {
+  max-width: 100%;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+}
+
+.row {
+  display: flex;
+  overflow: hidden;
+}
+
+.imagegroup {
+  display: flex;
+  width: 100%;
+}
+
+.imagegroup img {
+  flex-shrink: 0;
+  object-fit: cover;
+  border: 3px solid white;
+}
+
+.imagegroup {
+  animation: imgTravel 20s ease-in-out infinite;
+}
+
+@keyframes imgTravel {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+/* Home Page End */
+
+/* Cake Page Start */
+.cake-container {
+  width: 65%;
+  margin: auto;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  margin-top: 10.5rem;
+  display: flex;
+}
+
+.cake-container .left-side-list {
+  width: 25%;
+  background-color: var(--container-rightSide-color);
+  padding: 1rem;
+  margin-right: 0.5rem;
+  height: 85vh;
+}
+
+.cake-container .left-side-list .search-bar input {
+  width: 100%;
+  height: 3rem;
+  font-size: 1.7rem;
+  padding: 0 0.5rem;
+  outline: none;
+  background: var(--container-color);
+  border: 0.1rem solid var(--nav-bar-color);
+  border-radius: 0.5rem;
+  color: var(--nav-bar-color);
+}
+
+.cake-container .left-side-list .filter-container {
+  margin-top: 5rem;
+  color: var(--nav-bar-color);
+}
+
+.cake-container .left-side-list .filter-container .filter-show-hide {
+  display: none;
+}
+
+.cake-container .left-side-list .filter-container .filter-heading {
+  font-weight: bold;
+  font-size: 1.8rem;
+}
+
+.cake-container .left-side-list .filter-container .filter-engine {
+  margin: 1rem 0 0 1rem;
+}
+
+.cake-container .left-side-list .filter-container .filter-engine p {
+  font-weight: bold;
+}
+
+.cake-container
+  .left-side-list
+  .filter-container
+  .filter-engine
+  .filter-cakes-types {
+  margin: 0.7rem 0 0 1rem;
+}
+
+.cake-container
+  .left-side-list
+  .filter-container
+  .filter-engine
+  .filter-cakes-types
+  .filter-form-control {
+  padding-bottom: 0.5rem;
+}
+
+.cake-container
+  .left-side-list
+  .filter-container
+  .filter-engine
+  .filter-cakes-types
+  .filter-form-control
+  input {
+  margin-left: 1rem;
+}
+
+.cake-container .left-side-list input:focus {
+  box-shadow: 0.5rem 0.5rem 1rem 0.3rem var(--primary-color);
+}
+
+.cake-container .content {
+  padding: 1rem 0 0 1rem;
+  width: 75%;
+  background-color: var(--container-color);
+}
+
+.birthday-cakes {
+  position: relative;
+}
+
+.birthday-cakes h2 {
+  color: var(--nav-bar-color);
+  padding: 5px 0 10px;
+}
+
+.birthday-cakes .cakes-list {
+  display: inline-block;
+}
+
+.birthday-cakes .cakes-list img {
+  margin-right: 10px;
+}
+
+.chocolate-cakes h2 {
+  color: var(--nav-bar-color);
+  padding: 10px 0 10px;
+}
+
+.chocolate-cakes .cakes-list {
+  display: inline-block;
+}
+
+.chocolate-cakes .cakes-list img {
+  margin-right: 10px;
+}
+
+.strawberry-cakes h2 {
+  color: var(--nav-bar-color);
+  padding: 10px 0 10px;
+}
+
+.strawberry-cakes .cakes-list {
+  display: inline-block;
+}
+
+.strawberry-cakes .cakes-list img {
+  margin-right: 10px;
+}
+
+.casual-cakes h2 {
+  color: var(--nav-bar-color);
+  padding: 10px 0 10px;
+}
+
+.casual-cakes .cakes-list {
+  display: inline-block;
+}
+
+.casual-cakes .cakes-list img {
+  margin-right: 10px;
+}
+/* Cake Page End */
+
+/* Cookies Page Start */
+.cookies-container {
+  width: 65%;
+  margin: auto;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  margin-top: 10.5rem;
+  display: flex;
+}
+
+.cookies-container .left-side-list {
+  width: 25%;
+  background-color: var(--container-rightSide-color);
+  padding: 1rem;
+  margin-right: 0.5rem;
+  height: 85vh;
+}
+
+.cookies-container .left-side-list .search-bar input {
+  width: 100%;
+  height: 3rem;
+  font-size: 1.7rem;
+  padding: 0 0.5rem;
+  outline: none;
+  background: var(--container-color);
+  border: 0.1rem solid var(--nav-bar-color);
+  border-radius: 0.5rem;
+  color: var(--nav-bar-color);
+}
+
+.cookies-container .left-side-list .filter-container {
+  margin-top: 5rem;
+  color: var(--nav-bar-color);
+}
+
+.cookies-container .left-side-list .filter-container .filter-heading {
+  font-weight: bold;
+  font-size: 1.8rem;
+}
+
+.cookies-container .left-side-list .filter-container .filter-engine {
+  margin: 1rem 0 0 1rem;
+}
+
+.cookies-container .left-side-list .filter-container .filter-engine p {
+  font-weight: bold;
+}
+
+.cookies-container
+  .left-side-list
+  .filter-container
+  .filter-engine
+  .filter-cakes-types {
+  margin: 0.7rem 0 0 1rem;
+}
+
+.cookies-container
+  .left-side-list
+  .filter-container
+  .filter-engine
+  .filter-cakes-types
+  .filter-form-control {
+  padding-bottom: 0.5rem;
+}
+
+.cookies-container
+  .left-side-list
+  .filter-container
+  .filter-engine
+  .filter-cakes-types
+  .filter-form-control
+  input {
+  margin-left: 1rem;
+}
+
+.cookies-container .left-side-list input:focus {
+  box-shadow: 0.5rem 0.5rem 1rem 0.3rem var(--primary-color);
+}
+
+.cookies-container .content {
+  padding: 1rem 0 0 1rem;
+  width: 75%;
+  background-color: var(--container-color);
+}
+
+.birthday-cakes h2 {
+  color: var(--nav-bar-color);
+  padding: 5px 0 10px;
+}
+
+.birthday-cakes .cakes-list {
+  display: inline-block;
+}
+
+.birthday-cakes .cakes-list img {
+  margin-right: 10px;
+}
+/* Cookies Page End */
+
+/* Sweets Page Start */
+.sweets-container {
+  width: 65%;
+  margin: auto;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  margin-top: 10.5rem;
+  display: flex;
+}
+
+.sweets-container .left-side-list {
+  width: 25%;
+  background-color: var(--container-rightSide-color);
+  padding: 1rem;
+  margin-right: 0.5rem;
+  height: 85vh;
+}
+
+.sweets-container .left-side-list .search-bar input {
+  width: 100%;
+  height: 3rem;
+  font-size: 1.7rem;
+  padding: 0 0.5rem;
+  outline: none;
+  background: var(--container-color);
+  border: 0.1rem solid var(--nav-bar-color);
+  border-radius: 0.5rem;
+  color: var(--nav-bar-color);
+}
+
+.sweets-container .left-side-list .filter-container {
+  margin-top: 5rem;
+  color: var(--nav-bar-color);
+}
+
+.sweets-container .left-side-list .filter-container .filter-heading {
+  font-weight: bold;
+  font-size: 1.8rem;
+}
+
+.sweets-container .left-side-list .filter-container .filter-engine {
+  margin: 1rem 0 0 1rem;
+}
+
+.sweets-container .left-side-list .filter-container .filter-engine p {
+  font-weight: bold;
+}
+
+.sweets-container
+  .left-side-list
+  .filter-container
+  .filter-engine
+  .filter-cakes-types {
+  margin: 0.7rem 0 0 1rem;
+}
+
+.sweets-container
+  .left-side-list
+  .filter-container
+  .filter-engine
+  .filter-cakes-types
+  .filter-form-control {
+  padding-bottom: 0.5rem;
+}
+
+.sweets-container
+  .left-side-list
+  .filter-container
+  .filter-engine
+  .filter-cakes-types
+  .filter-form-control
+  input {
+  margin-left: 1rem;
+}
+
+.sweets-container .left-side-list input:focus {
+  box-shadow: 0.5rem 0.5rem 1rem 0.3rem var(--primary-color);
+}
+
+.sweets-container .content {
+  padding: 1rem 0 0 0;
+  width: 75%;
+  background-color: var(--container-color);
+}
+
+.birthday-cakes h2 {
+  color: var(--nav-bar-color);
+  padding: 5px 0 10px 1rem;
+}
+
+.birthday-cakes .cakes-list {
+  display: inline-block;
+}
+
+.birthday-cakes .cakes-list img {
+  margin-right: 10px;
+}
+/* Sweets Page End */
+
+/* My Account Start */
+.my-account-container {
+  width: 65%;
+  margin: auto;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  margin-top: 10.5rem;
+  display: flex;
+}
+
+.my-account-container .user-data-left-side {
+  width: 25%;
+  background-color: var(--container-rightSide-color);
+  padding: 1rem;
+  margin-right: 0.5rem;
+  height: 85vh;
+}
+
+.my-account-container .user-data-content {
+  padding: 1rem 0 0 1rem;
+  width: 75%;
+  background-color: var(--container-color);
+}
+/* My Account End */
+
+/* All Users Start */
+.all-users-container {
+  width: 65%;
+  margin: auto;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  margin-top: 10.5rem;
+  background-color: var(--container-rightSide-color);
+}
+
+.all-users-container .all-users-search input {
+  width: 100%;
+  height: 3rem;
+  border: 0.2rem solid var(--nav-bar-color);
+  margin: 1rem 0;
+  padding: 1rem;
+  outline: none;
+  font-size: 1.8rem;
+  background-color: var(--container-rightSide-color);
+  color: var(--nav-bar-color);
+}
+/* All Users End */
+
+/* Footer Start */
+.footer {
+  margin-top: 1rem;
+  height: 30rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* Footer End */
+
+/* ////////////////// Mobile Size ///////////////////// */
+@media only screen and (max-width: 600px) {
+  /* Navigation Start */
+  .navigation {
+    width: 100%;
+    height: 5rem;
+  }
+
+  .navigation--title {
+    display: block;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    line-height: 5rem;
+  }
+
+  .navigation--title p {
+    font-weight: 600;
+    font-size: 2rem;
+  }
+
+  .navigation--logo img {
+    width: 5.5rem;
+  }
+
+  .navigation--navigation-bar {
+    top: 5rem;
+    left: -100%;
+    transform: translate(0, 0);
+    background-color: var(--container-color);
+    width: 100%;
+    transition: 0.5s;
+    border-bottom: 0.2rem solid var(--nav-bar-color);
+  }
+
+  .menu-display {
+    left: 0;
+    transition: 0.5s;
+  }
+
+  .navigation--navigation-bar nav ul {
+    display: block;
+    gap: 0;
+  }
+
+  .navigation--navigation-bar nav ul li:first-child {
+    color: var(--primary-color); /* Unchanged */
+    background-color: var(--nav-bar-color); /* Unchanged */
+  }
+
+  .navigation--navigation-bar nav ul li {
+    padding: 1rem 0;
+    text-align: center;
+  }
+
+  .navigation--navigation-bar nav ul li:hover {
+    color: var(--primary-color);
+    background-color: var(--nav-bar-color);
+  }
+
+  .navigation--navigation-bar--bottom {
+    display: flex;
+  }
+
+  .navigation--navigation-bar--bottom .menu-bar-bottom-social-media {
+    padding: 1rem;
+  }
+
+  .navigation--navigation-bar--bottom .menu-bar-bottom-user-account {
+    padding: 1rem;
+  }
+
+  .navigation--user-account {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(0, -50%);
+    display: flex;
+    font-size: 1.8rem;
+    font-weight: 600;
+    display: none;
+  }
+
+  .navigation--menu-bar {
+    display: block;
+    position: absolute;
+    right: 1.5rem;
+    font-size: 2.5rem;
+    line-height: 5rem;
+    cursor: pointer;
+  }
+
+  .navigation--user-account--log-in {
+    margin-right: 2rem;
+  }
+  /* Navigation End */
+
+  /* Home Page Start */
+  .imgCollection-container {
+    margin-top: 8rem;
+    width: 95%;
+    z-index: -1;
+  }
+  /* Home Page End */
+
+  /* Cake Page Start */
+  .cake-container {
+    width: 95%;
+    margin-top: 6rem;
+    display: block;
+    z-index: -1;
+  }
+
+  .cake-container .left-side-list {
+    width: 100%;
+    padding: 1rem;
+    margin-right: 0;
+    margin-bottom: 1rem;
+    height: auto;
+  }
+
+  .cake-container .left-side-list .filter-container {
+    margin-top: 1rem;
+    color: var(--nav-bar-color);
+    display: flex;
+  }
+
+  .cake-container .left-side-list .filter-container .filter-show-hide {
+    display: block;
+    margin-left: 0.7rem;
+    cursor: pointer;
+  }
+
+  .filter-rotate-180 {
+    transform: rotate(180deg);
+    transition: 0.5s;
+  }
+
+  .cake-container .left-side-list .filter-container .filter-heading {
+    font-weight: bold;
+    font-size: 1.8rem;
+  }
+
+  .cake-container .left-side-list .filter-container .filter-engine {
+    margin: 1rem 0 0 1rem;
+  }
+
+  .cake-container
+    .left-side-list
+    .filter-container
+    .filter-engine
+    .filter-cakes-types
+    p {
+    font-weight: bold;
+  }
+
+  .cake-container
+    .left-side-list
+    .filter-container
+    .filter-engine
+    .filter-cakes-types {
+    margin: 0.7rem 0 0 1rem;
+  }
+
+  .cake-container
+    .left-side-list
+    .filter-container
+    .filter-engine
+    .filter-cakes-types
+    .filter-form-control {
+    padding-bottom: 0.5rem;
+  }
+
+  .cake-container
+    .left-side-list
+    .filter-container
+    .filter-engine
+    .filter-cakes-types
+    .filter-form-control
+    input {
+    margin-left: 1rem;
+  }
+
+  .cake-container .left-side-list input:focus {
+    box-shadow: 0.5rem 0.5rem 1rem 0.3rem var(--primary-color);
+  }
+
+  .cake-container .content {
+    padding: 1rem 0 0 1rem;
+    width: 100%;
+    background-color: var(--container-color);
+  }
+
+  .birthday-cakes h2 {
+    color: var(--nav-bar-color);
+    padding: 5px 0 10px;
+    text-align: center;
+  }
+
+  .birthday-cakes .cakes-list {
+    display: inline-block;
+  }
+
+  .birthday-cakes .cakes-list img {
+    margin-right: 10px;
+  }
+  /* Cake Page End */
+
+  /* Cookies Page Start */
+  .cookies-container {
+    width: 65%;
+    margin: auto;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    margin-top: 10.5rem;
+    display: flex;
+  }
+
+  .cookies-container .left-side-list {
+    width: 25%;
+    background-color: var(--container-rightSide-color);
+    padding: 1rem;
+    margin-right: 0.5rem;
+    height: 85vh;
+  }
+
+  .cookies-container .left-side-list .search-bar input {
+    width: 100%;
+    height: 3rem;
+    font-size: 1.7rem;
+    padding: 0 0.5rem;
+    outline: none;
+    background: var(--container-color);
+    border: 0.1rem solid var(--nav-bar-color);
+    border-radius: 0.5rem;
+    color: var(--nav-bar-color);
+  }
+
+  .cookies-container .left-side-list .filter-container {
+    margin-top: 5rem;
+    color: var(--nav-bar-color);
+  }
+
+  .cookies-container .left-side-list .filter-container .filter-heading {
+    font-weight: bold;
+    font-size: 1.8rem;
+  }
+
+  .cookies-container .left-side-list .filter-container .filter-engine {
+    margin: 1rem 0 0 1rem;
+  }
+
+  .cookies-container .left-side-list .filter-container .filter-engine p {
+    font-weight: bold;
+  }
+
+  .cookies-container
+    .left-side-list
+    .filter-container
+    .filter-engine
+    .filter-cakes-types {
+    margin: 0.7rem 0 0 1rem;
+  }
+
+  .cookies-container
+    .left-side-list
+    .filter-container
+    .filter-engine
+    .filter-cakes-types
+    .filter-form-control {
+    padding-bottom: 0.5rem;
+  }
+
+  .cookies-container
+    .left-side-list
+    .filter-container
+    .filter-engine
+    .filter-cakes-types
+    .filter-form-control
+    input {
+    margin-left: 1rem;
+  }
+
+  .cookies-container .left-side-list input:focus {
+    box-shadow: 0.5rem 0.5rem 1rem 0.3rem var(--primary-color);
+  }
+
+  .cookies-container .content {
+    padding: 1rem 0 0 1rem;
+    width: 75%;
+    background-color: var(--container-color);
+  }
+
+  .birthday-cakes h2 {
+    color: var(--nav-bar-color);
+    padding: 5px 0 10px;
+  }
+
+  .birthday-cakes .cakes-list {
+    display: inline-block;
+  }
+
+  .birthday-cakes .cakes-list img {
+    margin-right: 10px;
+  }
+  /* Cookies Page End */
+
+  /* Sweets Page Start */
+  .sweets-container {
+    width: 65%;
+    margin: auto;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    margin-top: 10.5rem;
+    display: flex;
+  }
+
+  .sweets-container .left-side-list {
+    width: 25%;
+    background-color: var(--container-rightSide-color);
+    padding: 1rem;
+    margin-right: 0.5rem;
+    height: 85vh;
+  }
+
+  .sweets-container .left-side-list .search-bar input {
+    width: 100%;
+    height: 3rem;
+    font-size: 1.7rem;
+    padding: 0 0.5rem;
+    outline: none;
+    background: var(--container-color);
+    border: 0.1rem solid var(--nav-bar-color);
+    border-radius: 0.5rem;
+    color: var(--nav-bar-color);
+  }
+
+  .sweets-container .left-side-list .filter-container {
+    margin-top: 5rem;
+    color: var(--nav-bar-color);
+  }
+
+  .sweets-container .left-side-list .filter-container .filter-heading {
+    font-weight: bold;
+    font-size: 1.8rem;
+  }
+
+  .sweets-container .left-side-list .filter-container .filter-engine {
+    margin: 1rem 0 0 1rem;
+  }
+
+  .sweets-container .left-side-list .filter-container .filter-engine p {
+    font-weight: bold;
+  }
+
+  .sweets-container
+    .left-side-list
+    .filter-container
+    .filter-engine
+    .filter-cakes-types {
+    margin: 0.7rem 0 0 1rem;
+  }
+
+  .sweets-container
+    .left-side-list
+    .filter-container
+    .filter-engine
+    .filter-cakes-types
+    .filter-form-control {
+    padding-bottom: 0.5rem;
+  }
+
+  .sweets-container
+    .left-side-list
+    .filter-container
+    .filter-engine
+    .filter-cakes-types
+    .filter-form-control
+    input {
+    margin-left: 1rem;
+  }
+
+  .sweets-container .left-side-list input:focus {
+    box-shadow: 0.5rem 0.5rem 1rem 0.3rem var(--primary-color);
+  }
+
+  .sweets-container .content {
+    padding: 1rem 0 0 1rem;
+    width: 75%;
+    background-color: var(--container-color);
+  }
+
+  .birthday-cakes h2 {
+    color: var(--nav-bar-color);
+    padding: 5px 0 10px;
+  }
+
+  .birthday-cakes .cakes-list {
+    display: inline-block;
+  }
+
+  .birthday-cakes .cakes-list img {
+    margin-right: 10px;
+  }
+  /* Sweets Page End */
+
+  /* My Account Start */
+  .my-account-container {
+    width: 65%;
+    margin: auto;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    margin-top: 10.5rem;
+    display: flex;
+  }
+
+  .my-account-container .user-data-left-side {
+    width: 25%;
+    background-color: var(--container-rightSide-color);
+    padding: 1rem;
+    margin-right: 0.5rem;
+    height: 85vh;
+  }
+
+  .my-account-container .user-data-content {
+    padding: 1rem 0 0 1rem;
+    width: 75%;
+    background-color: var(--container-color);
+  }
+
+  /* My Account End */
+}
+
+/* ////////////////// iPad Size ///////////////////// */
+@media only screen and (max-width: 1300px) and (min-width: 600px) {
+  /* Navigation Start */
+  .navigation {
+    width: 100%;
+    height: 7rem;
+  }
+
+  .navigation--title {
+    display: block;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    line-height: 7rem;
+  }
+
+  .navigation--title p {
+    font-weight: 600;
+    font-size: 2.7rem;
+  }
+
+  .navigation--logo img {
+    width: 7rem;
+  }
+
+  .navigation--navigation-bar {
+    top: 7rem;
+    left: -100%;
+    transform: translate(0, 0);
+    background-color: var(--container-color);
+    width: 50%;
+    transition: 0.5s;
+    border-bottom: 0.2rem solid var(--nav-bar-color);
+    border-right: 0.2rem solid var(--nav-bar-color);
+    border-bottom-right-radius: 85%;
+  }
+
+  .menu-display {
+    left: 0;
+    transition: 0.5s;
+  }
+
+  .navigation--navigation-bar nav ul {
+    display: block;
+  }
+
+  .navigation--navigation-bar nav ul li:first-child {
+    color: var(--primary-color); /* Unchanged */
+    background-color: var(--nav-bar-color); /* Unchanged */
+  }
+
+  .navigation--navigation-bar nav ul li {
+    padding: 1rem 0;
+    text-align: center;
+  }
+
+  .navigation--navigation-bar nav ul li:hover {
+    color: var(--primary-color);
+    background-color: var(--nav-bar-color);
+  }
+
+  .navigation--navigation-bar--bottom {
+    display: flex;
+  }
+
+  .navigation--navigation-bar--bottom .menu-bar-bottom-social-media {
+    padding: 1rem;
+  }
+
+  .navigation--navigation-bar--bottom .menu-bar-bottom-user-account {
+    padding: 1rem;
+  }
+
+  .navigation--user-account {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(0, -50%);
+    display: flex;
+    font-size: 1.8rem;
+    font-weight: 600;
+    display: none;
+  }
+
+  .navigation--menu-bar {
+    display: block;
+    position: absolute;
+    right: 1.5rem;
+    font-size: 2.5rem;
+    line-height: 7rem;
+    cursor: pointer;
+  }
+
+  .navigation--user-account--log-in {
+    margin-right: 2rem;
+  }
+  /* Navigation End */
+
+  /* Home Page Start */
+  .imgCollection-container {
+    margin-top: 8rem;
+    width: 95%;
+    z-index: -1;
+  }
+  /* Home Page End */
+
+  /* Cake Page Start */
+  .cake-container {
+    width: 95%;
+    margin-top: 8rem;
+    display: block;
+    z-index: -1;
+  }
+
+  .cake-container .left-side-list {
+    width: 100%;
+    padding: 1rem;
+    margin-right: 0;
+    margin-bottom: 1rem;
+    height: auto;
+  }
+
+  .cake-container .left-side-list .filter-container {
+    margin-top: 1rem;
+    color: var(--nav-bar-color);
+    display: flex;
+  }
+
+  .cake-container .left-side-list .filter-container .filter-show-hide {
+    display: block;
+    margin-left: 0.7rem;
+    cursor: pointer;
+  }
+
+  .filter-rotate-180 {
+    transform: rotate(180deg);
+    transition: 0.5s;
+  }
+
+  .cake-container .left-side-list .filter-container .filter-heading {
+    font-weight: bold;
+    font-size: 1.8rem;
+  }
+
+  .cake-container .left-side-list .filter-container .filter-engine {
+    margin: 1rem 0 0 1rem;
+  }
+
+  .cake-container
+    .left-side-list
+    .filter-container
+    .filter-engine
+    .filter-cakes-types
+    p {
+    font-weight: bold;
+  }
+
+  .cake-container
+    .left-side-list
+    .filter-container
+    .filter-engine
+    .filter-cakes-types {
+    margin: 0.7rem 0 0 1rem;
+  }
+
+  .cake-container
+    .left-side-list
+    .filter-container
+    .filter-engine
+    .filter-cakes-types
+    .filter-form-control {
+    padding-bottom: 0.5rem;
+  }
+
+  .cake-container
+    .left-side-list
+    .filter-container
+    .filter-engine
+    .filter-cakes-types
+    .filter-form-control
+    input {
+    margin-left: 1rem;
+  }
+
+  .cake-container .left-side-list input:focus {
+    box-shadow: 0.5rem 0.5rem 1rem 0.3rem var(--primary-color);
+  }
+
+  .cake-container .content {
+    padding: 1rem 0 0 1rem;
+    width: 100%;
+    background-color: var(--container-color);
+  }
+
+  .birthday-cakes h2 {
+    color: var(--nav-bar-color);
+    padding: 5px 0 10px;
+    text-align: center;
+  }
+
+  .birthday-cakes .cakes-list {
+    display: inline-block;
+  }
+
+  .birthday-cakes .cakes-list img {
+    margin-right: 10px;
+  }
+  /* Cake Page End */
+
+  /* Cookies Page Start */
+  .cookies-container {
+    width: 65%;
+    margin: auto;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    margin-top: 10.5rem;
+    display: flex;
+  }
+
+  .cookies-container .left-side-list {
+    width: 25%;
+    background-color: var(--container-rightSide-color);
+    padding: 1rem;
+    margin-right: 0.5rem;
+    height: 85vh;
+  }
+
+  .cookies-container .left-side-list .search-bar input {
+    width: 100%;
+    height: 3rem;
+    font-size: 1.7rem;
+    padding: 0 0.5rem;
+    outline: none;
+    background: var(--container-color);
+    border: 0.1rem solid var(--nav-bar-color);
+    border-radius: 0.5rem;
+    color: var(--nav-bar-color);
+  }
+
+  .cookies-container .left-side-list .filter-container {
+    margin-top: 5rem;
+    color: var(--nav-bar-color);
+  }
+
+  .cookies-container .left-side-list .filter-container .filter-heading {
+    font-weight: bold;
+    font-size: 1.8rem;
+  }
+
+  .cookies-container .left-side-list .filter-container .filter-engine {
+    margin: 1rem 0 0 1rem;
+  }
+
+  .cookies-container .left-side-list .filter-container .filter-engine p {
+    font-weight: bold;
+  }
+
+  .cookies-container
+    .left-side-list
+    .filter-container
+    .filter-engine
+    .filter-cakes-types {
+    margin: 0.7rem 0 0 1rem;
+  }
+
+  .cookies-container
+    .left-side-list
+    .filter-container
+    .filter-engine
+    .filter-cakes-types
+    .filter-form-control {
+    padding-bottom: 0.5rem;
+  }
+
+  .cookies-container
+    .left-side-list
+    .filter-container
+    .filter-engine
+    .filter-cakes-types
+    .filter-form-control
+    input {
+    margin-left: 1rem;
+  }
+
+  .cookies-container .left-side-list input:focus {
+    box-shadow: 0.5rem 0.5rem 1rem 0.3rem var(--primary-color);
+  }
+
+  .cookies-container .content {
+    padding: 1rem 0 0 1rem;
+    width: 75%;
+    background-color: var(--container-color);
+  }
+
+  .birthday-cakes h2 {
+    color: var(--nav-bar-color);
+    padding: 5px 0 10px;
+  }
+
+  .birthday-cakes .cakes-list {
+    display: inline-block;
+  }
+
+  .birthday-cakes .cakes-list img {
+    margin-right: 10px;
+  }
+  /* Cookies Page End */
+
+  /* Sweets Page Start */
+  .sweets-container {
+    width: 65%;
+    margin: auto;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    margin-top: 10.5rem;
+    display: flex;
+  }
+
+  .sweets-container .left-side-list {
+    width: 25%;
+    background-color: var(--container-rightSide-color);
+    padding: 1rem;
+    margin-right: 0.5rem;
+    height: 85vh;
+  }
+
+  .sweets-container .left-side-list .search-bar input {
+    width: 100%;
+    height: 3rem;
+    font-size: 1.7rem;
+    padding: 0 0.5rem;
+    outline: none;
+    background: var(--container-color);
+    border: 0.1rem solid var(--nav-bar-color);
+    border-radius: 0.5rem;
+    color: var(--nav-bar-color);
+  }
+
+  .sweets-container .left-side-list .filter-container {
+    margin-top: 5rem;
+    color: var(--nav-bar-color);
+  }
+
+  .sweets-container .left-side-list .filter-container .filter-heading {
+    font-weight: bold;
+    font-size: 1.8rem;
+  }
+
+  .sweets-container .left-side-list .filter-container .filter-engine {
+    margin: 1rem 0 0 1rem;
+  }
+
+  .sweets-container .left-side-list .filter-container .filter-engine p {
+    font-weight: bold;
+  }
+
+  .sweets-container
+    .left-side-list
+    .filter-container
+    .filter-engine
+    .filter-cakes-types {
+    margin: 0.7rem 0 0 1rem;
+  }
+
+  .sweets-container
+    .left-side-list
+    .filter-container
+    .filter-engine
+    .filter-cakes-types
+    .filter-form-control {
+    padding-bottom: 0.5rem;
+  }
+
+  .sweets-container
+    .left-side-list
+    .filter-container
+    .filter-engine
+    .filter-cakes-types
+    .filter-form-control
+    input {
+    margin-left: 1rem;
+  }
+
+  .sweets-container .left-side-list input:focus {
+    box-shadow: 0.5rem 0.5rem 1rem 0.3rem var(--primary-color);
+  }
+
+  .sweets-container .content {
+    padding: 1rem 0 0 1rem;
+    width: 75%;
+    background-color: var(--container-color);
+  }
+
+  .birthday-cakes h2 {
+    color: var(--nav-bar-color);
+    padding: 5px 0 10px;
+  }
+
+  .birthday-cakes .cakes-list {
+    display: inline-block;
+  }
+
+  .birthday-cakes .cakes-list img {
+    margin-right: 10px;
+  }
+  /* Sweets Page End */
+
+  /* My Account Start */
+  .my-account-container {
+    width: 65%;
+    margin: auto;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    margin-top: 10.5rem;
+    display: flex;
+  }
+
+  .my-account-container .user-data-left-side {
+    width: 25%;
+    background-color: var(--container-rightSide-color);
+    padding: 1rem;
+    margin-right: 0.5rem;
+    height: 85vh;
+  }
+
+  .my-account-container .user-data-content {
+    padding: 1rem 0 0 1rem;
+    width: 75%;
+    background-color: var(--container-color);
+  }
+
+  /* My Account End */
+}

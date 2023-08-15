@@ -1,0 +1,66 @@
+:root {
+  --nav-bar-color: rgb(248, 112, 135);
+  --primary-color: rgb(248, 203, 211);
+  --background-color: rgb(250, 230, 234);
+  --signup-container-color: rgb(250, 220, 225);
+}
+
+.signup-form {
+  position: absolute;
+  margin-top: 10.5rem;
+  width: 65%;
+  left: 50%;
+  transform: translate(-50%);
+  background-color: var(--background-color);
+}
+
+.signup-container {
+  background-color: var(--signup-container-color);
+  width: 30%;
+  margin: auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border: 0.3rem solid var(--primary-color);
+  border-radius: 1rem;
+}
+
+.signup-heading {
+  text-align: center;
+  color: var(--nav-bar-color);
+  padding: 1rem 0;
+  background-color: var(--primary-color);
+}
+
+.form-control {
+  padding: 1rem;
+}
+
+.form-control label {
+  display: block;
+  padding-bottom: 0.5rem;
+  font-weight: bold;
+  color: var(--nav-bar-color);
+}
+
+.form-control input {
+  width: 100%;
+  height: 3.5rem;
+  border: 0.2rem solid var(--primary-color);
+  background-color: var(--background-color);
+  padding-left: 1rem;
+  font-size: 1.8rem;
+  outline: none;
+}
+
+.signup-btn-container {
+  text-align: center;
+  padding: 1rem 0;
+  background-color: var(--primary-color);
+}
+
+.signup-btn {
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 2rem;
+  color: var(--nav-bar-color);
+}
