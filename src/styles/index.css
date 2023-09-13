@@ -79,11 +79,6 @@ body {
   font-size: 1.5rem;
 }
 
-/* .navigation--navigation-bar nav ul li:first-child {
-  color: var(--primary-color);
-  background-color: var(--nav-bar-color);
-} */
-
 .navigation--navigation-bar nav ul li {
   list-style: none;
   white-space: nowrap;
@@ -102,11 +97,6 @@ body {
   border-radius: 1rem;
 }
 
-/* .navigation--navigation-bar nav ul li:first-child a {
-  color: var(--primary-color);
-  background-color: var(--nav-bar-color);
-} */
-
 .navigation--navigation-bar-selected {
   color: var(--primary-color);
   background-color: var(--nav-bar-color);
@@ -114,6 +104,99 @@ body {
 
 .navigation--navigation-bar--bottom {
   display: none;
+}
+
+.navigation--navigation-bar--bottom .menu-bar-bottom-social-media ul {
+  display: flex;
+}
+
+.navigation--navigation-bar--bottom .menu-bar-bottom-social-media ul li {
+  list-style: none;
+}
+
+.navigation--navigation-bar--bottom .menu-bar-bottom-social-media ul li a {
+  width: 4rem;
+  height: 4rem;
+  background-color: var(--container-rightSide-color);
+  text-align: center;
+  line-height: 3.3rem;
+  font-size: 2.5rem;
+  margin: 0 0.5rem;
+  display: block;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  border: 0.3rem solid #fff;
+}
+
+.navigation--navigation-bar--bottom
+  .menu-bar-bottom-social-media
+  ul
+  li
+  a
+  .icon {
+  position: relative;
+  color: var(--nav-bar-color);
+  transition: 0.7s;
+  z-index: 3;
+}
+
+.navigation--navigation-bar--bottom
+  .menu-bar-bottom-social-media
+  ul
+  li
+  a:hover
+  .icon {
+  color: #fff;
+  transform: rotateY(360deg);
+}
+
+.navigation--navigation-bar--bottom
+  .menu-bar-bottom-social-media
+  ul
+  li
+  a:before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #f00;
+  transition: 0.5s;
+  z-index: 2;
+}
+
+.navigation--navigation-bar--bottom
+  .menu-bar-bottom-social-media
+  ul
+  li
+  a:hover:before {
+  top: 0;
+}
+
+.navigation--navigation-bar--bottom
+  .menu-bar-bottom-social-media
+  ul
+  li:nth-child(1)
+  a:before {
+  background: #3b5999;
+}
+
+.navigation--navigation-bar--bottom
+  .menu-bar-bottom-social-media
+  ul
+  li:nth-child(2)
+  a:before {
+  background: #e56969;
+}
+
+.navigation--navigation-bar--bottom
+  .menu-bar-bottom-social-media
+  ul
+  li:nth-child(3)
+  a:before {
+  background: #128c7e;
 }
 
 .navigation--user-account {
@@ -226,8 +309,8 @@ body {
 }
 
 .cake-container .left-side-list .filter-container .filter-heading {
-  font-weight: bold;
-  font-size: 1.8rem;
+  font-weight: 700;
+  font-size: 2.2rem;
 }
 
 .cake-container .left-side-list .filter-container .filter-engine {
@@ -235,7 +318,8 @@ body {
 }
 
 .cake-container .left-side-list .filter-container .filter-engine p {
-  font-weight: bold;
+  font-weight: 700;
+  font-size: 1.7rem;
 }
 
 .cake-container
@@ -261,8 +345,20 @@ body {
   .filter-engine
   .filter-cakes-types
   .filter-form-control
+  label {
+  font-size: 1.5rem;
+}
+
+.cake-container
+  .left-side-list
+  .filter-container
+  .filter-engine
+  .filter-cakes-types
+  .filter-form-control
   input {
   margin-left: 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .cake-container .left-side-list input:focus {
@@ -270,7 +366,7 @@ body {
 }
 
 .cake-container .content {
-  padding: 1rem 0 0 1rem;
+  padding: 1rem 0 0 0;
   width: 75%;
   background-color: var(--container-color);
 }
@@ -369,8 +465,8 @@ body {
 }
 
 .cookies-container .left-side-list .filter-container .filter-heading {
-  font-weight: bold;
-  font-size: 1.8rem;
+  font-weight: 700;
+  font-size: 2.2rem;
 }
 
 .cookies-container .left-side-list .filter-container .filter-engine {
@@ -378,7 +474,8 @@ body {
 }
 
 .cookies-container .left-side-list .filter-container .filter-engine p {
-  font-weight: bold;
+  font-weight: 700;
+  font-size: 1.7rem;
 }
 
 .cookies-container
@@ -404,8 +501,20 @@ body {
   .filter-engine
   .filter-cakes-types
   .filter-form-control
+  label {
+  font-size: 1.5rem;
+}
+
+.cookies-container
+  .left-side-list
+  .filter-container
+  .filter-engine
+  .filter-cakes-types
+  .filter-form-control
   input {
   margin-left: 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .cookies-container .left-side-list input:focus {
@@ -469,8 +578,8 @@ body {
 }
 
 .sweets-container .left-side-list .filter-container .filter-heading {
-  font-weight: bold;
-  font-size: 1.8rem;
+  font-weight: 700;
+  font-size: 2.2rem;
 }
 
 .sweets-container .left-side-list .filter-container .filter-engine {
@@ -478,7 +587,8 @@ body {
 }
 
 .sweets-container .left-side-list .filter-container .filter-engine p {
-  font-weight: bold;
+  font-weight: 700;
+  font-size: 1.7rem;
 }
 
 .sweets-container
@@ -504,8 +614,21 @@ body {
   .filter-engine
   .filter-cakes-types
   .filter-form-control
+  label {
+  font-size: 1.5rem;
+}
+
+.sweets-container
+  .left-side-list
+  .filter-container
+  .filter-engine
+  .filter-cakes-types
+  .filter-form-control
   input {
   margin-left: 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
 }
 
 .sweets-container .left-side-list input:focus {
@@ -531,6 +654,63 @@ body {
   margin-right: 10px;
 }
 /* Sweets Page End */
+
+/* Shadow Placeholder Start */
+.shadow-placeholder {
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.shadow-placeholder .shadow-placeholder-title {
+  height: 30px;
+  width: 150px;
+  background-color: rgb(224, 221, 221);
+  border-radius: 10px;
+  animation: shadow-placeholder-animation infinite 0.7s;
+}
+
+.shadow-placeholder .shadow-placeholder-container {
+  margin-top: 10px;
+}
+
+.shadow-placeholder .shadow-placeholder-slider {
+  margin-top: 10px;
+  display: flex;
+  overflow: hidden;
+}
+
+.shadow-placeholder .shadow-placeholder-slider .shadow-placeholder-slide {
+  width: 150px;
+  height: 150px;
+  background-color: rgb(224, 221, 221);
+  border-radius: 16px;
+  margin-right: 20px;
+  animation: shadow-placeholder-animation infinite 0.7s;
+}
+
+.shadow-placeholder .shadow-placeholder-slider .shadow-placeholder-slide-mini {
+  width: 66px;
+  height: 150px;
+  background-color: rgb(224, 221, 221);
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+  animation: shadow-placeholder-animation infinite 0.7s;
+}
+
+@keyframes shadow-placeholder-animation {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(0.97);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+/* Shadow Placeholder End */
 
 /* My Account Start */
 .my-account-container {
@@ -637,19 +817,9 @@ body {
     gap: 0;
   }
 
-  .navigation--navigation-bar nav ul li:first-child {
-    color: var(--primary-color); /* Unchanged */
-    background-color: var(--nav-bar-color); /* Unchanged */
-  }
-
   .navigation--navigation-bar nav ul li {
     padding: 1rem 0;
     text-align: center;
-  }
-
-  .navigation--navigation-bar nav ul li:hover {
-    color: var(--primary-color);
-    background-color: var(--nav-bar-color);
   }
 
   .navigation--navigation-bar--bottom {
@@ -691,7 +861,7 @@ body {
 
   /* Home Page Start */
   .imgCollection-container {
-    margin-top: 8rem;
+    margin-top: 6rem;
     width: 95%;
     z-index: -1;
   }
@@ -802,38 +972,24 @@ body {
 
   /* Cookies Page Start */
   .cookies-container {
-    width: 65%;
-    margin: auto;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%);
-    margin-top: 10.5rem;
-    display: flex;
+    width: 95%;
+    margin-top: 6rem;
+    display: block;
+    z-index: -1;
   }
 
   .cookies-container .left-side-list {
-    width: 25%;
-    background-color: var(--container-rightSide-color);
-    padding: 1rem;
-    margin-right: 0.5rem;
-    height: 85vh;
-  }
-
-  .cookies-container .left-side-list .search-bar input {
     width: 100%;
-    height: 3rem;
-    font-size: 1.7rem;
-    padding: 0 0.5rem;
-    outline: none;
-    background: var(--container-color);
-    border: 0.1rem solid var(--nav-bar-color);
-    border-radius: 0.5rem;
-    color: var(--nav-bar-color);
+    padding: 1rem;
+    margin-right: 0;
+    margin-bottom: 1rem;
+    height: auto;
   }
 
   .cookies-container .left-side-list .filter-container {
-    margin-top: 5rem;
+    margin-top: 1rem;
     color: var(--nav-bar-color);
+    display: flex;
   }
 
   .cookies-container .left-side-list .filter-container .filter-heading {
@@ -882,7 +1038,7 @@ body {
 
   .cookies-container .content {
     padding: 1rem 0 0 1rem;
-    width: 75%;
+    width: 100%;
     background-color: var(--container-color);
   }
 
@@ -902,47 +1058,62 @@ body {
 
   /* Sweets Page Start */
   .sweets-container {
-    width: 65%;
-    margin: auto;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%);
-    margin-top: 10.5rem;
-    display: flex;
+    width: 95%;
+    margin-top: 6rem;
+    display: block;
+    z-index: -1;
   }
 
   .sweets-container .left-side-list {
-    width: 25%;
-    background-color: var(--container-rightSide-color);
+    width: 100%;
     padding: 1rem;
-    margin-right: 0.5rem;
-    height: 85vh;
+    margin-right: 0;
+    margin-bottom: 1rem;
+    height: auto;
   }
 
-  .sweets-container .left-side-list .search-bar input {
-    width: 100%;
-    height: 3rem;
-    font-size: 1.7rem;
-    padding: 0 0.5rem;
-    outline: none;
-    background: var(--container-color);
-    border: 0.1rem solid var(--nav-bar-color);
-    border-radius: 0.5rem;
+  .sweets-container .left-side-list .filter-heading {
+    font-weight: bold;
+    font-size: 1.8rem;
     color: var(--nav-bar-color);
+    padding: 1rem 0 0 0;
+  }
+
+  .sweets-container .left-side-list .filter-heading .filter-icon {
+    font-size: 4rem;
+    padding-left: 0.5rem;
+    cursor: pointer;
+    transition: 0.5s;
+  }
+
+  .filter-icon-rotation {
+    transform: rotate(180deg);
+    animation: filter-icon-animation 0.6s;
+    margin-left: 0.5rem;
+  }
+
+  @keyframes filter-icon-animation {
+    0% {
+      transform: rotate(1deg);
+    }
+
+    100% {
+      transform: rotate(180deg);
+    }
   }
 
   .sweets-container .left-side-list .filter-container {
-    margin-top: 5rem;
     color: var(--nav-bar-color);
+    margin-top: -1.5rem;
+    padding-top: 1rem;
   }
 
-  .sweets-container .left-side-list .filter-container .filter-heading {
-    font-weight: bold;
-    font-size: 1.8rem;
+  .display-flex {
+    display: flex;
   }
 
   .sweets-container .left-side-list .filter-container .filter-engine {
-    margin: 1rem 0 0 1rem;
+    margin: 0 0 0 1rem;
   }
 
   .sweets-container .left-side-list .filter-container .filter-engine p {
@@ -982,7 +1153,7 @@ body {
 
   .sweets-container .content {
     padding: 1rem 0 0 1rem;
-    width: 75%;
+    width: 100%;
     background-color: var(--container-color);
   }
 
@@ -1063,6 +1234,7 @@ body {
     border-bottom: 0.2rem solid var(--nav-bar-color);
     border-right: 0.2rem solid var(--nav-bar-color);
     border-bottom-right-radius: 85%;
+    z-index: 1;
   }
 
   .menu-display {
@@ -1074,19 +1246,9 @@ body {
     display: block;
   }
 
-  .navigation--navigation-bar nav ul li:first-child {
-    color: var(--primary-color); /* Unchanged */
-    background-color: var(--nav-bar-color); /* Unchanged */
-  }
-
   .navigation--navigation-bar nav ul li {
     padding: 1rem 0;
     text-align: center;
-  }
-
-  .navigation--navigation-bar nav ul li:hover {
-    color: var(--primary-color);
-    background-color: var(--nav-bar-color);
   }
 
   .navigation--navigation-bar--bottom {
@@ -1136,9 +1298,8 @@ body {
 
   /* Cake Page Start */
   .cake-container {
-    width: 95%;
-    margin-top: 8rem;
-    display: block;
+    width: 100%;
+    margin-top: 7.5rem;
     z-index: -1;
   }
 
@@ -1239,13 +1400,9 @@ body {
 
   /* Cookies Page Start */
   .cookies-container {
-    width: 65%;
-    margin: auto;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%);
-    margin-top: 10.5rem;
-    display: flex;
+    width: 100%;
+    margin-top: 7.5rem;
+    z-index: -1;
   }
 
   .cookies-container .left-side-list {
@@ -1339,13 +1496,9 @@ body {
 
   /* Sweets Page Start */
   .sweets-container {
-    width: 65%;
-    margin: auto;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%);
-    margin-top: 10.5rem;
-    display: flex;
+    width: 100%;
+    margin-top: 7.5rem;
+    z-index: -1;
   }
 
   .sweets-container .left-side-list {

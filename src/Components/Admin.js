@@ -1,5 +1,3 @@
-import { Button } from "@mui/material";
-
 import AddCake from "./AddCake";
 import AddCookies from "./AddCookies";
 import AddSweets from "./AddSweets";
@@ -21,22 +19,25 @@ export default function Admin() {
   return (
     <div>
       <div className="cake-container">
-        <div className="left-side-list">
-          <Button variant="outlined" onClick={() => setActionWord("add-cakes")}>
+        <div className="left-side-list d-grid gap-3">
+          <button
+            className="btn btn-primary btn-lg"
+            onClick={() => setActionWord("add-cakes")}
+          >
             Add Cakes
-          </Button>
-          <Button
-            variant="outlined"
+          </button>
+          <button
+            className="btn btn-primary btn-lg"
             onClick={() => setActionWord("add-cookies")}
           >
             Add Cookies
-          </Button>
-          <Button
-            variant="outlined"
+          </button>
+          <button
+            className="btn btn-primary btn-lg"
             onClick={() => setActionWord("add-sweets")}
           >
             Add Sweets
-          </Button>
+          </button>
         </div>
         <div className="content">{addPastry(actionWord)}</div>
       </div>

@@ -9,9 +9,11 @@
   position: absolute;
   margin-top: 10.5rem;
   width: 65%;
+  height: 89vh;
   left: 50%;
   transform: translate(-50%);
   background-color: var(--background-color);
+  z-index: -1;
 }
 
 .signup-container {
@@ -40,6 +42,7 @@
   padding-bottom: 0.5rem;
   font-weight: bold;
   color: var(--nav-bar-color);
+  font-size: 1.5rem;
 }
 
 .form-control input {
@@ -63,4 +66,44 @@
   font-weight: bold;
   font-size: 2rem;
   color: var(--nav-bar-color);
+}
+
+@media only screen and (max-width: 600px) {
+  .signup-form {
+    margin-top: 5.5rem;
+    width: 98%;
+    height: 93vh;
+  }
+
+  .signup-container {
+    width: 75%;
+  }
+
+  .form-control {
+    padding: 1rem;
+  }
+
+  .form-control label {
+    font-size: 1.3rem;
+  }
+}
+
+@media only screen and (max-width: 1300px) and (min-width: 600px) {
+  .signup-form {
+    margin-top: 7.5rem;
+    width: 99%;
+    height: 91.7vh;
+  }
+
+  .signup-container {
+    width: 50%;
+  }
+
+  .form-control {
+    padding: 1rem;
+  }
+
+  .form-control label {
+    font-size: 1.5rem;
+  }
 }

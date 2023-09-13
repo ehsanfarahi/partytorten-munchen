@@ -42,16 +42,14 @@ export default function Navigation() {
           <ul>
             <li>
               <Link
-                to="/home-page"
+                to="/"
                 className={`${
-                  selectMenu("/home-page") &&
-                  "navigation--navigation-bar-selected"
+                  selectMenu("/") && "navigation--navigation-bar-selected"
                 }`}
               >
                 <span
                   className={`${
-                    selectMenu("/home-page") &&
-                    "navigation--navigation-bar-selected"
+                    selectMenu("/") && "navigation--navigation-bar-selected"
                   }`}
                   onClick={handleMenuIcon}
                 >
@@ -177,7 +175,23 @@ export default function Navigation() {
         </nav>
         <div className="navigation--navigation-bar--bottom">
           <div className="menu-bar-bottom-social-media">
-            <p>facebook</p>
+            <ul>
+              <li>
+                <a href="#">
+                  <i className="fab fa-facebook-f icon"></i>{" "}
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i className="fab fa-instagram icon"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i className="fab fa-whatsapp icon"></i>
+                </a>
+              </li>
+            </ul>
           </div>
           <div className="menu-bar-bottom-user-account">
             {getUserLoginData ? (

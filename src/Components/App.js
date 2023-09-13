@@ -1,4 +1,5 @@
 import "../styles/index.css";
+import "../styles/ImageSlider.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "./Home";
@@ -21,11 +22,11 @@ function App() {
           <Navigation />
         </div>
         <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/cakes-page" element={<Cake />} />
+          <Route path="/cookies-page" element={<Cookies />} />
+          <Route path="/sweets-page" element={<Sweets />} />
           <Route element={<PrivateComponent />}>
-            <Route path="/home-page" element={<Home />} />
-            <Route path="/cakes-page" element={<Cake />} />
-            <Route path="/cookies-page" element={<Cookies />} />
-            <Route path="/sweets-page" element={<Sweets />} />
             <Route
               path="/favorite-page"
               element={<p>This is the favorite items page</p>}

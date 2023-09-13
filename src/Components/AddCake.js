@@ -10,18 +10,17 @@ const AddCake = () => {
   async function addCake(e) {
     console.log(image, type, category, weight, price);
 
-    const formData = new FormData();
-    formData.append("image", image);
+    const formdata = new FormData();
+    formdata.append("file", image);
+    formdata.append("type", type);
+    formdata.append("category", category);
+    formdata.append("weight", weight);
+    formdata.append("price", price);
 
-    let result = await fetch(
-      "http://127.0.0.1:3001/add-cake",
-      {
-        method: "post",
-        headers: { "Content-Type": "application/json, multipart/form-data" },
-        body: JSON.stringify({ type, category, weight, price }),
-      },
-      formData
-    );
+    let result = await fetch("http://127.0.0.1:3001/add-cake", {
+      method: "post",
+      body: formdata,
+    });
 
     result = await result.json();
     console.log(result);
@@ -47,7 +46,6 @@ const AddCake = () => {
                     type="file"
                     name="image"
                     className="form-control form-control-lg"
-                    required
                   />
                 </div>
                 <div className="mb-3">
@@ -63,14 +61,21 @@ const AddCake = () => {
                 </div>
                 <div className="mb-3">
                   <label htmlFor="category">Category</label>
-                  <input
+
+                  <select
                     onChange={(e) => setCategory(e.target.value)}
                     type="text"
                     name="category"
                     className="form-control form-control-lg"
                     placeholder="Enter cake's category"
                     required
-                  />
+                  >
+                    <option value="">Choose Cakes Category</option>
+                    <option value="Birthday Cakes">Birthday Cakes</option>
+                    <option value="Chocolate Cakes">Chocolate Cakes</option>
+                    <option value="Fruits Cakes">Fruits Cakes</option>
+                    <option value="Casual Cakes">Casual Cakes</option>
+                  </select>
                 </div>
                 <div className="mb-3">
                   <label htmlFor="weight">Weight</label>

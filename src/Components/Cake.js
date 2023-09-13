@@ -1,28 +1,4 @@
-import { useState } from "react";
-
-import cake1 from "../images/cake1.jpg";
-import cake2 from "../images/cake2.jpeg";
-import cake3 from "../images/cake3.jpeg";
-import cake4 from "../images/cake4.jpeg";
-import cake5 from "../images/cake5.jpeg";
-
-import fruitCake1 from "../images/fruit-cake1.jpeg";
-import fruitCake2 from "../images/fruit-cake2.jpg";
-import fruitCake3 from "../images/fruit-cake3.jpeg";
-import fruitCake4 from "../images/fruit-cake4.jpg";
-import fruitCake5 from "../images/fruit-cake5.jpg";
-
-import chocoCake1 from "../images/choco-cake1.jpeg";
-import chocoCake2 from "../images/choco-cake2.jpeg";
-import chocoCake3 from "../images/choco-cake3.jpeg";
-import chocoCake4 from "../images/choco-cake4.jpeg";
-import chocoCake5 from "../images/choco-cake5.jpeg";
-
-import casualCake1 from "../images/casual-cake1.jpeg";
-import casualCake2 from "../images/casual-cake2.jpeg";
-import casualCake3 from "../images/casual-cake3.jpeg";
-import casualCake4 from "../images/casual-cake4.jpeg";
-import casualCake5 from "../images/casual-cake5.jpeg";
+import { useEffect, useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
@@ -55,6 +31,33 @@ export default function Cake() {
       .querySelector(".filter-show-hide")
       .classList.toggle("filter-rotate-180");
   };
+
+  const [cakes, setCakes] = useState([]);
+
+  const [displayContent, setDisplayContent] = useState(false);
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:3001/cakes").then((response) => {
+      response.json().then((result) => {
+        setCakes(result);
+        setDisplayContent(true);
+      });
+    });
+  }, []);
+
+  function prev() {
+    document.getElementById("slider-container").scrollLeft -= 150;
+  }
+
+  function next() {
+    document.getElementById("slider-container").scrollLeft += 150;
+  }
+
+  function handlSlide() {
+    document.querySelector(".slide img").classList.toggle("zoomed");
+    document.querySelector(".overlay").classList.toggle("active");
+  }
+
   return (
     <div>
       <div className="cake-container">
@@ -73,7 +76,14 @@ export default function Cake() {
               <div className="filter-cakes-types">
                 <p>Cakes Type</p>
                 <div className="filter-form-control">
-                  <label>Birthday Cakes</label>
+                  <label>
+                    Birthday Cakes:{" "}
+                    {
+                      cakes.filter(
+                        (fCake) => fCake.category === "Birthday Cakes"
+                      ).length
+                    }
+                  </label>
                   <input
                     type="checkbox"
                     defaultChecked={birthCakesChecked}
@@ -83,7 +93,14 @@ export default function Cake() {
                   />
                 </div>
                 <div className="filter-form-control">
-                  <label>Chocolate Cakes</label>
+                  <label>
+                    Chocolate Cakes:{" "}
+                    {
+                      cakes.filter(
+                        (fCake) => fCake.category === "Chocolate Cakes"
+                      ).length
+                    }
+                  </label>
                   <input
                     type="checkbox"
                     defaultChecked={chocoCakesChecked}
@@ -93,7 +110,13 @@ export default function Cake() {
                   />
                 </div>
                 <div className="filter-form-control">
-                  <label>Fruits Cakes</label>
+                  <label>
+                    Fruits Cakes:{" "}
+                    {
+                      cakes.filter((fCake) => fCake.category === "Fruits Cakes")
+                        .length
+                    }
+                  </label>
                   <input
                     type="checkbox"
                     defaultChecked={fruitsCakesChecked}
@@ -103,7 +126,13 @@ export default function Cake() {
                   />
                 </div>
                 <div className="filter-form-control">
-                  <label>Casual Cakes</label>
+                  <label>
+                    Casual Cakes:{" "}
+                    {
+                      cakes.filter((fCake) => fCake.category === "Casual Cakes")
+                        .length
+                    }
+                  </label>
                   <input
                     type="checkbox"
                     defaultChecked={casualCakesChecked}
@@ -142,7 +171,7 @@ export default function Cake() {
                   <input type="checkbox" />
                 </div>
                 <div>
-                  <p>Result: 20 cakes</p>
+                  <p>Result: {cakes.length} cakes</p>
                 </div>
               </div>
             </div>
@@ -150,137 +179,279 @@ export default function Cake() {
         </div>
         <div className="content">
           {birthCakesChecked ? (
-            <div className="birthday-cakes">
-              <h2>Birthday Cakes</h2>
-              <div className="cakes-list">
-                <img src={cake1} alt="birthday cake" width="150" height="150" />
-                <img src={cake2} alt="birthday cake" width="150" height="150" />
-                <img src={cake3} alt="birthday cake" width="150" height="150" />
-                <img src={cake4} alt="birthday cake" width="150" height="150" />
-                <img src={cake5} alt="birthday cake" width="150" height="150" />
-              </div>
+            <div>
+              {displayContent ? (
+                <>
+                  <div className="birthday-cakes">
+                    <h2>Birthday Cakes</h2>
+                    <div id="slider-container" className="slider">
+                      {cakes
+                        .filter((fCake) => fCake.category === "Birthday Cakes")
+                        .map((cake, i) => {
+                          return (
+                            <div
+                              key={cake._id}
+                              className="slide"
+                              onClick={handlSlide}
+                            >
+                              <img
+                                src={require(`../../../server/uploads/cakesImages/${cake.image}`)}
+                                alt={cake.type}
+                              />
+                              <div className="img-overlay">
+                                <p>{cake.type}</p>
+                                <p>Weight: {cake.weight} kg</p>
+                                <p>Price: $ {cake.price}</p>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      <div onClick={prev} className="control-prev-btn">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="1em"
+                          viewBox="0 0 320 512"
+                        >
+                          <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
+                        </svg>
+                      </div>
+                      <div onClick={next} className="control-next-btn">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="1em"
+                          viewBox="0 0 320 512"
+                        >
+                          <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>{" "}
+                </>
+              ) : (
+                <>
+                  <div className="shadow-placeholder">
+                    <div className="shadow-placeholder-title"></div>
+                    <div className="shadow-placeholder-slider">
+                      <div className="shadow-placeholder-slide"></div>
+                      <div className="shadow-placeholder-slide"></div>
+                      <div className="shadow-placeholder-slide"></div>
+                      <div className="shadow-placeholder-slide"></div>
+                      <div className="shadow-placeholder-slide"></div>
+                      <div className="shadow-placeholder-slide-mini"></div>
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
           ) : (
             false
           )}
           {chocoCakesChecked ? (
-            <div className="chocolate-cakes">
-              <h2>Chocolate Cakes</h2>
-              <div className="cakes-list">
-                <img
-                  src={chocoCake1}
-                  alt="birthday cake"
-                  width="150"
-                  height="150"
-                />
-                <img
-                  src={chocoCake2}
-                  alt="birthday cake"
-                  width="150"
-                  height="150"
-                />
-                <img
-                  src={chocoCake3}
-                  alt="birthday cake"
-                  width="150"
-                  height="150"
-                />
-                <img
-                  src={chocoCake4}
-                  alt="birthday cake"
-                  width="150"
-                  height="150"
-                />
-                <img
-                  src={chocoCake5}
-                  alt="birthday cake"
-                  width="150"
-                  height="150"
-                />
-              </div>
+            <div>
+              {displayContent ? (
+                <>
+                  <div className="birthday-cakes">
+                    <h2>Chocolate Cakes</h2>
+                    <div id="slider-container" className="slider">
+                      {cakes
+                        .filter((fCake) => fCake.category === "Chocolate Cakes")
+                        .map((cake, i) => {
+                          return (
+                            <div
+                              key={cake._id}
+                              className="slide"
+                              onClick={handlSlide}
+                            >
+                              <img
+                                src={require(`../../../server/uploads/cakesImages/${cake.image}`)}
+                                alt={cake.type}
+                              />
+                              <div className="img-overlay">
+                                <p>{cake.type}</p>
+                                <p>Weight: {cake.weight} kg</p>
+                                <p>Price: $ {cake.price}</p>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      <div onClick={prev} className="control-prev-btn">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="1em"
+                          viewBox="0 0 320 512"
+                        >
+                          <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
+                        </svg>
+                      </div>
+                      <div onClick={next} className="control-next-btn">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="1em"
+                          viewBox="0 0 320 512"
+                        >
+                          <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>{" "}
+                </>
+              ) : (
+                <>
+                  <div className="shadow-placeholder">
+                    <div className="shadow-placeholder-title"></div>
+                    <div className="shadow-placeholder-slider">
+                      <div className="shadow-placeholder-slide"></div>
+                      <div className="shadow-placeholder-slide"></div>
+                      <div className="shadow-placeholder-slide"></div>
+                      <div className="shadow-placeholder-slide"></div>
+                      <div className="shadow-placeholder-slide"></div>
+                      <div className="shadow-placeholder-slide-mini"></div>
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
           ) : (
             false
           )}
           {fruitsCakesChecked ? (
-            <div className="strawberry-cakes">
-              <h2>Fruits Cakes</h2>
-              <div className="cakes-list">
-                <img
-                  src={fruitCake1}
-                  alt="birthday cake"
-                  width="150"
-                  height="150"
-                />
-                <img
-                  src={fruitCake2}
-                  alt="birthday cake"
-                  width="150"
-                  height="150"
-                />
-                <img
-                  src={fruitCake3}
-                  alt="birthday cake"
-                  width="150"
-                  height="150"
-                />
-                <img
-                  src={fruitCake4}
-                  alt="birthday cake"
-                  width="150"
-                  height="150"
-                />
-                <img
-                  src={fruitCake5}
-                  alt="birthday cake"
-                  width="150"
-                  height="150"
-                />
-              </div>
+            <div>
+              {displayContent ? (
+                <>
+                  <div className="birthday-cakes">
+                    <h2>Fruits Cakes</h2>
+                    <div id="slider-container" className="slider">
+                      {cakes
+                        .filter((fCake) => fCake.category === "Fruits Cakes")
+                        .map((cake, i) => {
+                          return (
+                            <div
+                              key={cake._id}
+                              className="slide"
+                              onClick={handlSlide}
+                            >
+                              <img
+                                src={require(`../../../server/uploads/cakesImages/${cake.image}`)}
+                                alt={cake.type}
+                              />
+                              <div className="img-overlay">
+                                <p>{cake.type}</p>
+                                <p>Weight: {cake.weight} kg</p>
+                                <p>Price: $ {cake.price}</p>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      <div onClick={prev} className="control-prev-btn">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="1em"
+                          viewBox="0 0 320 512"
+                        >
+                          <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
+                        </svg>
+                      </div>
+                      <div onClick={next} className="control-next-btn">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="1em"
+                          viewBox="0 0 320 512"
+                        >
+                          <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>{" "}
+                </>
+              ) : (
+                <>
+                  <div className="shadow-placeholder">
+                    <div className="shadow-placeholder-title"></div>
+                    <div className="shadow-placeholder-slider">
+                      <div className="shadow-placeholder-slide"></div>
+                      <div className="shadow-placeholder-slide"></div>
+                      <div className="shadow-placeholder-slide"></div>
+                      <div className="shadow-placeholder-slide"></div>
+                      <div className="shadow-placeholder-slide"></div>
+                      <div className="shadow-placeholder-slide-mini"></div>
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
           ) : (
             false
           )}
           {casualCakesChecked ? (
-            <div className="casual-cakes">
-              <h2>Casual Cakes</h2>
-              <div className="cakes-list">
-                <img
-                  src={casualCake1}
-                  alt="birthday cake"
-                  width="150"
-                  height="150"
-                />
-                <img
-                  src={casualCake2}
-                  alt="birthday cake"
-                  width="150"
-                  height="150"
-                />
-                <img
-                  src={casualCake3}
-                  alt="birthday cake"
-                  width="150"
-                  height="150"
-                />
-                <img
-                  src={casualCake4}
-                  alt="birthday cake"
-                  width="150"
-                  height="150"
-                />
-                <img
-                  src={casualCake5}
-                  alt="birthday cake"
-                  width="150"
-                  height="150"
-                />
-              </div>
+            <div>
+              {displayContent ? (
+                <>
+                  <div className="birthday-cakes">
+                    <h2>Casual Cakes</h2>
+                    <div id="slider-container" className="slider">
+                      {cakes
+                        .filter((fCake) => fCake.category === "Casual Cakes")
+                        .map((cake, i) => {
+                          return (
+                            <div
+                              key={cake._id}
+                              className="slide"
+                              onClick={handlSlide}
+                            >
+                              <img
+                                src={require(`../../../server/uploads/cakesImages/${cake.image}`)}
+                                alt={cake.type}
+                              />
+                              <div className="img-overlay">
+                                <p>{cake.type}</p>
+                                <p>Weight: {cake.weight} kg</p>
+                                <p>Price: $ {cake.price}</p>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      <div onClick={prev} className="control-prev-btn">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="1em"
+                          viewBox="0 0 320 512"
+                        >
+                          <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
+                        </svg>
+                      </div>
+                      <div onClick={next} className="control-next-btn">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="1em"
+                          viewBox="0 0 320 512"
+                        >
+                          <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>{" "}
+                </>
+              ) : (
+                <>
+                  <div className="shadow-placeholder">
+                    <div className="shadow-placeholder-title"></div>
+                    <div className="shadow-placeholder-slider">
+                      <div className="shadow-placeholder-slide"></div>
+                      <div className="shadow-placeholder-slide"></div>
+                      <div className="shadow-placeholder-slide"></div>
+                      <div className="shadow-placeholder-slide"></div>
+                      <div className="shadow-placeholder-slide"></div>
+                      <div className="shadow-placeholder-slide-mini"></div>
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
           ) : (
             false
           )}
         </div>
+        <div className="overlay" onClick={handlSlide}></div>
       </div>
     </div>
   );

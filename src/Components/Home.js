@@ -1,5 +1,3 @@
-import Footer from "./Footer";
-
 export default function Home() {
   return (
     <div className="imgCollection-container">
@@ -129,7 +127,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }
