@@ -36,14 +36,14 @@ export default function Cake() {
 
   const [displayContent, setDisplayContent] = useState(false);
 
-  useEffect(() => {
-    fetch("http://127.0.0.1:3001/cakes").then((response) => {
-      response.json().then((result) => {
-        setCakes(result);
-        setDisplayContent(true);
-      });
-    });
-  }, []);
+  // useEffect(() => {
+  //   fetch("http://127.0.0.1:3001/cakes").then((response) => {
+  //     response.json().then((result) => {
+  //       setCakes(result);
+  //       setDisplayContent(true);
+  //     });
+  //   });
+  // }, []);
 
   function prev() {
     document.getElementById("slider-container").scrollLeft -= 150;
