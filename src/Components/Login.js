@@ -38,7 +38,7 @@ const Login = () => {
     <div>
       <div className="login-form">
         <div className="login-container">
-          <h2 className="login-heading">Log In Form</h2>
+          <h2 className="login-heading">Sign In Form</h2>
           {error ? (
             <>
               <p
@@ -54,7 +54,7 @@ const Login = () => {
           ) : (
             false
           )}
-          <div className="form-control">
+          <div className="login-form-control">
             <label htmlFor="firstName">Email</label>
             <input
               onChange={(e) => setEmail(e.target.value)}
@@ -62,7 +62,7 @@ const Login = () => {
               placeholder="Enter your email"
             />
           </div>
-          <div className="form-control">
+          <div className="login-form-control">
             <label htmlFor="firstName">Password</label>
             <input
               onChange={(e) => setPassword(e.target.value)}
@@ -70,9 +70,12 @@ const Login = () => {
               placeholder="Enter your password"
             />
           </div>
+          <p>
+            Don't have an account? <Link to="/user-signup">Sign up</Link>
+          </p>
           <div className="login-btn-container">
             <Link onClick={handleLogin} className="login-btn">
-              Login
+              Sign in
             </Link>
           </div>
         </div>

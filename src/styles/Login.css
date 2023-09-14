@@ -6,14 +6,13 @@
 }
 
 .login-form {
-  position: absolute;
-  margin-top: 10.5rem;
+  position: relative;
+  padding-top: 20rem;
+  padding-bottom: 5rem;
   width: 65%;
-  height: 89vh;
-  left: 50%;
-  transform: translate(-50%);
+  margin: auto;
+  height: 80vh;
   background-color: var(--background-color);
-  z-index: -1;
 }
 
 .login-container {
@@ -26,6 +25,21 @@
   border-radius: 1rem;
 }
 
+.login-container p {
+  text-align: right;
+  font-weight: 700;
+  font-size: 1.4rem;
+  padding: 1rem 1rem 0.5rem 0;
+  color: var(--nav-bar-color);
+}
+
+.login-container p a {
+  font-weight: 600;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: var(--nav-bar-color);
+}
+
 .login-heading {
   text-align: center;
   color: var(--nav-bar-color);
@@ -33,11 +47,11 @@
   background-color: var(--primary-color);
 }
 
-.form-control {
+.login-form-control {
   padding: 1rem;
 }
 
-.form-control label {
+.login-form-control label {
   display: block;
   padding-bottom: 0.5rem;
   font-weight: bold;
@@ -45,7 +59,7 @@
   font-size: 1.5rem;
 }
 
-.form-control input {
+.login-form-control input {
   width: 100%;
   height: 3.5rem;
   border: 0.2rem solid var(--primary-color);
@@ -70,40 +84,38 @@
 
 @media only screen and (max-width: 600px) {
   .login-form {
-    margin-top: 5.5rem;
+    padding-top: 6.5rem;
     width: 98%;
-    height: 93vh;
   }
 
   .login-container {
     width: 75%;
   }
 
-  .form-control {
+  .login-form-control {
     padding: 1rem;
   }
 
-  .form-control label {
+  .login-form-control label {
     font-size: 1.3rem;
   }
 }
 
 @media only screen and (max-width: 1300px) and (min-width: 600px) {
   .login-form {
-    margin-top: 7.5rem;
+    padding-top: 7.5rem;
     width: 99%;
-    height: 91.7vh;
   }
 
   .login-container {
     width: 50%;
   }
 
-  .form-control {
+  .login-form-control {
     padding: 1rem;
   }
 
-  .form-control label {
+  .login-form-control label {
     font-size: 1.5rem;
   }
 }

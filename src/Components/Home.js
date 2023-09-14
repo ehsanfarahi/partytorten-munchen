@@ -4,50 +4,56 @@ export default function Home() {
       <div className="imgCollection">
         <div className="row small">
           <div className="imagegroup" style={{ animationDelay: "1s" }}>
-            <img src={require("../images/cake1.jpg")} alt="cake1" width="180" />
+            <img
+              src={require("../images/cake1.jpg")}
+              alt="cake1"
+              className="img-top"
+            />
             <img
               src={require("../images/cake2.jpeg")}
               alt="cake1"
-              width="180"
+              className="img-top"
             />
             <img
               src={require("../images/cake3.jpeg")}
               alt="cake1"
-              width="342"
-              height="180"
+              className="img-top"
             />
             <img
               src={require("../images/cake4.jpeg")}
               alt="cake1"
-              width="342"
-              height="180"
+              className="img-top"
             />
             <img
               src={require("../images/cake5.jpeg")}
               alt="cake1"
-              width="342"
-              height="180"
+              className="img-top"
             />
-            <img src={require("../images/cake1.jpg")} alt="cake1" width="180" />
+            <img
+              src={require("../images/cake1.jpg")}
+              alt="cake1"
+              className="img-top"
+            />
             <img
               src={require("../images/cake3.jpeg")}
               alt="cake1"
-              width="342"
-              height="180"
+              className="img-top"
             />
             <img
               src={require("../images/cake4.jpeg")}
               alt="cake1"
-              width="342"
-              height="180"
+              className="img-top"
             />
             <img
               src={require("../images/cake5.jpeg")}
               alt="cake1"
-              width="342"
-              height="180"
+              className="img-top"
             />
-            <img src={require("../images/cake1.jpg")} alt="cake1" width="180" />
+            <img
+              src={require("../images/cake1.jpg")}
+              alt="cake1"
+              className="img-top"
+            />
           </div>
         </div>
         <div className="row large">
@@ -55,75 +61,77 @@ export default function Home() {
             <img
               src={require("../images/cake3.jpeg")}
               alt="cake1"
-              width="1024"
-              height="480"
+              className="img-middle"
             />
             <img
               src={require("../images/cake4.jpeg")}
               alt="cake1"
-              width="1024"
-              height="480"
+              className="img-middle"
             />
             <img
               src={require("../images/cake3.jpeg")}
               alt="cake1"
-              width="1024"
-              height="480"
+              className="img-middle"
             />
             <img
               src={require("../images/cake4.jpeg")}
               alt="cake1"
-              width="1024"
-              height="480"
+              className="img-middle"
             />
           </div>
         </div>
         <div className="row small">
           <div className="imagegroup" style={{ animationDelay: "1s" }}>
-            <img src={require("../images/cake1.jpg")} alt="cake1" width="180" />
+            <img
+              src={require("../images/cake1.jpg")}
+              alt="cake1"
+              className="img-bottom"
+            />
             <img
               src={require("../images/cake2.jpeg")}
               alt="cake1"
-              width="180"
+              className="img-bottom"
             />
             <img
               src={require("../images/cake3.jpeg")}
               alt="cake1"
-              width="342"
-              height="180"
+              className="img-bottom"
             />
             <img
               src={require("../images/cake4.jpeg")}
               alt="cake1"
-              width="342"
-              height="180"
+              className="img-bottom"
             />
             <img
               src={require("../images/cake5.jpeg")}
               alt="cake1"
-              width="342"
-              height="180"
+              className="img-bottom"
             />
-            <img src={require("../images/cake1.jpg")} alt="cake1" width="180" />
+            <img
+              src={require("../images/cake1.jpg")}
+              alt="cake1"
+              className="img-bottom"
+            />
             <img
               src={require("../images/cake3.jpeg")}
               alt="cake1"
-              width="342"
-              height="180"
+              className="img-bottom"
             />
             <img
               src={require("../images/cake4.jpeg")}
               alt="cake1"
-              width="342"
-              height="180"
+              className="img-bottom"
             />
             <img
               src={require("../images/cake5.jpeg")}
               alt="cake1"
-              width="342"
-              height="180"
+              className="img-bottom"
             />
-            <img src={require("../images/cake1.jpg")} alt="cake1" width="180" />
+            <img
+              src={require("../images/cake1.jpg")}
+              alt="cake1"
+              className="img-bottom"
+            />
           </div>
         </div>
       </div>

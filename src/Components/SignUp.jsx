@@ -50,7 +50,7 @@ const SignUp = () => {
       <div className="signup-form">
         <div className="signup-container">
           <h2 className="signup-heading">Sign Up Form</h2>
-          <div className="form-control">
+          <div className="signup-form-control">
             <label htmlFor="firstName">First Name</label>
             <input
               onChange={(e) => setFirstName(e.target.value)}
@@ -58,7 +58,7 @@ const SignUp = () => {
               placeholder="Enter your first name"
             />
           </div>
-          <div className="form-control">
+          <div className="signup-form-control">
             <label htmlFor="firstName">Last Name</label>
             <input
               onChange={(e) => setLastName(e.target.value)}
@@ -66,7 +66,7 @@ const SignUp = () => {
               placeholder="Enter your last name"
             />
           </div>
-          <div className="form-control">
+          <div className="signup-form-control">
             <label htmlFor="firstName">Password</label>
             <input
               onChange={(e) => setPassword(e.target.value)}
@@ -75,7 +75,7 @@ const SignUp = () => {
             />
           </div>
 
-          <div className="form-control">
+          <div className="signup-form-control">
             <label htmlFor="firstName">Re-enter Password</label>
             <input
               onChange={(e) => setPassword2(e.target.value)}
@@ -83,7 +83,7 @@ const SignUp = () => {
               placeholder="Re-enter your password"
             />
           </div>
-          <div className="form-control">
+          <div className="signup-form-control">
             <label htmlFor="firstName">Email</label>
             <input
               onChange={(e) => setEmail(e.target.value)}
@@ -91,7 +91,7 @@ const SignUp = () => {
               placeholder="Enter your email"
             />
           </div>
-          <div className="form-control">
+          <div className="signup-form-control">
             <label htmlFor="firstName">Phone Number</label>
             <input
               onChange={(e) => setPhoneNumber(e.target.value)}
@@ -99,7 +99,7 @@ const SignUp = () => {
               placeholder="Enter your phone number"
             />
           </div>
-          <div className="form-control">
+          <div className="signup-form-control">
             <label htmlFor="firstName">Address</label>
             <input
               onChange={(e) => setAddress(e.target.value)}
@@ -107,6 +107,9 @@ const SignUp = () => {
               placeholder="Street name and num, postal code, city"
             />
           </div>
+          <p>
+            Already have an accout? <Link to="/user-login">Sign in</Link>
+          </p>
           <div className="signup-btn-container">
             <Link onClick={handleSignup} className="signup-btn">
               Sign up

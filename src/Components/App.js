@@ -13,6 +13,7 @@ import MyAccount from "./MyAccount";
 import Admin from "./Admin";
 import UserUpdate from "./UserUpdate";
 import Login from "./Login";
+import Footer from "./Footer";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
           <Route path="/user-login" element={<Login />} />
           <Route path="/user-signup" element={<SignUp />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </div>
   );
