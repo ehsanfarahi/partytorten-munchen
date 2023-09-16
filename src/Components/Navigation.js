@@ -23,6 +23,14 @@ export default function Navigation() {
       .classList.toggle("menu-display");
   };
 
+  function handleMenuList() {
+    document
+      .querySelector(".navigation--navigation-bar")
+      .classList.toggle("menu-display");
+
+    window.scrollTo({ top: 0 });
+  }
+
   function selectMenu(menu) {
     if (menu === location.pathname) {
       return true;
@@ -51,7 +59,7 @@ export default function Navigation() {
                   className={`${
                     selectMenu("/") && "navigation--navigation-bar-selected"
                   }`}
-                  onClick={handleMenuIcon}
+                  onClick={handleMenuList}
                 >
                   Home
                 </span>
@@ -70,7 +78,7 @@ export default function Navigation() {
                     selectMenu("/cakes-page") &&
                     "navigation--navigation-bar-selected"
                   }`}
-                  onClick={handleMenuIcon}
+                  onClick={handleMenuList}
                 >
                   Cakes
                 </span>
@@ -89,7 +97,7 @@ export default function Navigation() {
                     selectMenu("/cookies-page") &&
                     "navigation--navigation-bar-selected"
                   }`}
-                  onClick={handleMenuIcon}
+                  onClick={handleMenuList}
                 >
                   Cookies
                 </span>
@@ -108,7 +116,7 @@ export default function Navigation() {
                     selectMenu("/sweets-page") &&
                     "navigation--navigation-bar-selected"
                   }`}
-                  onClick={handleMenuIcon}
+                  onClick={handleMenuList}
                 >
                   Sweets
                 </span>
@@ -127,7 +135,7 @@ export default function Navigation() {
                     selectMenu("/favorite-page") &&
                     "navigation--navigation-bar-selected"
                   }`}
-                  onClick={handleMenuIcon}
+                  onClick={handleMenuList}
                 >
                   Favorite
                 </span>{" "}
@@ -147,13 +155,32 @@ export default function Navigation() {
                     selectMenu("/my-account") &&
                     "navigation--navigation-bar-selected"
                   }`}
-                  onClick={handleMenuIcon}
+                  onClick={handleMenuList}
                 >
                   My account
                 </span>
               </Link>
             </li>
             <li>
+              <Link
+                to="/contact-us"
+                className={`${
+                  selectMenu("/contact-us") &&
+                  "navigation--navigation-bar-selected"
+                }`}
+              >
+                <span
+                  className={`${
+                    selectMenu("/contact-us") &&
+                    "navigation--navigation-bar-selected"
+                  }`}
+                  onClick={handleMenuList}
+                >
+                  Contact us
+                </span>
+              </Link>
+            </li>
+            {/* <li>
               <Link
                 to="/admin"
                 className={`${
@@ -170,7 +197,7 @@ export default function Navigation() {
                   Admin
                 </span>
               </Link>
-            </li>
+            </li> */}
           </ul>
         </nav>
         <div className="navigation--navigation-bar--bottom">
@@ -205,7 +232,7 @@ export default function Navigation() {
                 <Link
                   to="/user-login"
                   className="m-sign-in"
-                  onClick={handleMenuIcon}
+                  onClick={handleMenuList}
                 >
                   Sign in{" "}
                   <span>

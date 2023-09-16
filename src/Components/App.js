@@ -10,6 +10,7 @@ import Sweets from "./Sweets";
 import SignUp from "./SignUp";
 import PrivateComponent from "./PrivateComponent";
 import MyAccount from "./MyAccount";
+import ContactUs from "./ContactUs";
 import Admin from "./Admin";
 import UserUpdate from "./UserUpdate";
 import Login from "./Login";
@@ -33,9 +34,10 @@ function App() {
               element={<p>This is the favorite items page</p>}
             />
             <Route path="/my-account/:id" element={<MyAccount />} />
-            <Route path="/admin" element={<Admin />} />
+            {/* <Route path="/admin" element={<Admin />} /> */}
             <Route path="/user-update/:id" element={<UserUpdate />} />
           </Route>
+          <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/user-login" element={<Login />} />
           <Route path="/user-signup" element={<SignUp />} />
         </Routes>

@@ -34,6 +34,10 @@ const Login = () => {
     );
   };
 
+  function handleSignup() {
+    window.scrollTo({ top: 0 });
+  }
+
   return (
     <div>
       <div className="login-form">
@@ -71,7 +75,10 @@ const Login = () => {
             />
           </div>
           <p>
-            Don't have an account? <Link to="/user-signup">Sign up</Link>
+            Don't have an account?{" "}
+            <Link to="/user-signup" onClick={handleSignup}>
+              Sign up
+            </Link>
           </p>
           <div className="login-btn-container">
             <Link onClick={handleLogin} className="login-btn">
