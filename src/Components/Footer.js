@@ -43,26 +43,26 @@ const Footer = () => {
             <p>Follow us on</p>
             <ul>
               <li>
-                <a href="#">
+                <span>
                   <i className="fab fa-facebook-f icon"></i>{" "}
-                </a>
+                </span>
               </li>
               <li>
-                <a href="#">
+                <span>
                   <i className="fab fa-instagram icon"></i>
-                </a>
+                </span>
               </li>
               <li>
-                <a href="#">
+                <span>
                   <i className="fab fa-whatsapp icon"></i>
-                </a>
+                </span>
               </li>
             </ul>
           </div>
         </div>
       </div>
       <div className="footer-bottom">
-        <p>All rights reserved. www.partytortenmunchen.com</p>
+        <p>www.partytortenmunchen.com | All rights reserved.</p>
         <p>
           <span>Terms and conditions</span> <span>Policy</span>
         </p>

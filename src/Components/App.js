@@ -15,6 +15,7 @@ import Admin from "./Admin";
 import UserUpdate from "./UserUpdate";
 import Login from "./Login";
 import Footer from "./Footer";
+import ProductDetails from "./ProductDetails";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/user-login" element={<Login />} />
           <Route path="/user-signup" element={<SignUp />} />
+          <Route path="/product-details" element={<ProductDetails />} />
         </Routes>
         <Footer />
       </BrowserRouter>

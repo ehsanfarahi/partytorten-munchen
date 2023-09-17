@@ -74,9 +74,9 @@ button {
   border: 0;
   outline: none;
   font-family: inherit;
-  -webkit-appearance: none;
+  /* -webkit-appearance: none;
   -moz-appearance: none;
-  appearance: none;
+  appearance: none; */
 }
 
 .contact-us-container textarea,

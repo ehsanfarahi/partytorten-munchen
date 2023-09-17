@@ -50,6 +50,7 @@ export default function Navigation() {
           <ul>
             <li>
               <Link
+                onClick={handleMenuList}
                 to="/"
                 className={`${
                   selectMenu("/") && "navigation--navigation-bar-selected"
@@ -59,7 +60,6 @@ export default function Navigation() {
                   className={`${
                     selectMenu("/") && "navigation--navigation-bar-selected"
                   }`}
-                  onClick={handleMenuList}
                 >
                   Home
                 </span>
@@ -74,11 +74,11 @@ export default function Navigation() {
                 }`}
               >
                 <span
+                  onClick={handleMenuList}
                   className={`${
                     selectMenu("/cakes-page") &&
                     "navigation--navigation-bar-selected"
                   }`}
-                  onClick={handleMenuList}
                 >
                   Cakes
                 </span>
@@ -86,6 +86,7 @@ export default function Navigation() {
             </li>
             <li>
               <Link
+                onClick={handleMenuList}
                 to="/cookies-page"
                 className={`${
                   selectMenu("/cookies-page") &&
@@ -97,7 +98,6 @@ export default function Navigation() {
                     selectMenu("/cookies-page") &&
                     "navigation--navigation-bar-selected"
                   }`}
-                  onClick={handleMenuList}
                 >
                   Cookies
                 </span>
@@ -112,11 +112,11 @@ export default function Navigation() {
                 }`}
               >
                 <span
+                  onClick={handleMenuList}
                   className={`${
                     selectMenu("/sweets-page") &&
                     "navigation--navigation-bar-selected"
                   }`}
-                  onClick={handleMenuList}
                 >
                   Sweets
                 </span>
@@ -124,6 +124,7 @@ export default function Navigation() {
             </li>
             <li>
               <Link
+                onClick={handleMenuList}
                 to="/favorite-page"
                 className={`${
                   selectMenu("/favorite-page") &&
@@ -135,7 +136,6 @@ export default function Navigation() {
                     selectMenu("/favorite-page") &&
                     "navigation--navigation-bar-selected"
                   }`}
-                  onClick={handleMenuList}
                 >
                   Favorite
                 </span>{" "}
@@ -144,6 +144,7 @@ export default function Navigation() {
             </li>
             <li>
               <Link
+                onClick={handleMenuList}
                 to="/my-account"
                 className={`${
                   selectMenu("/my-account") &&
@@ -155,7 +156,6 @@ export default function Navigation() {
                     selectMenu("/my-account") &&
                     "navigation--navigation-bar-selected"
                   }`}
-                  onClick={handleMenuList}
                 >
                   My account
                 </span>
@@ -163,6 +163,7 @@ export default function Navigation() {
             </li>
             <li>
               <Link
+                onClick={handleMenuList}
                 to="/contact-us"
                 className={`${
                   selectMenu("/contact-us") &&
@@ -174,7 +175,6 @@ export default function Navigation() {
                     selectMenu("/contact-us") &&
                     "navigation--navigation-bar-selected"
                   }`}
-                  onClick={handleMenuList}
                 >
                   Contact us
                 </span>
@@ -204,19 +204,19 @@ export default function Navigation() {
           <div className="menu-bar-bottom-social-media">
             <ul>
               <li>
-                <a href="#">
+                <span>
                   <i className="fab fa-facebook-f icon"></i>{" "}
-                </a>
+                </span>
               </li>
               <li>
-                <a href="#">
+                <span>
                   <i className="fab fa-instagram icon"></i>
-                </a>
+                </span>
               </li>
               <li>
-                <a href="#">
+                <span>
                   <i className="fab fa-whatsapp icon"></i>
-                </a>
+                </span>
               </li>
             </ul>
           </div>

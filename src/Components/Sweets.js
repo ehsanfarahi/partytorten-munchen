@@ -19,7 +19,9 @@ export default function Sweets() {
   const [displayContent, setDisplayContent] = useState(true);
 
   useEffect(() => {
-    document.querySelector(".filter-container").classList.add("display-none");
+    document
+      .querySelector(".left-side-list-mobile .filter-container")
+      .classList.add("display-none");
   });
 
   function rotateFilterIcon() {
@@ -28,7 +30,7 @@ export default function Sweets() {
       .classList.toggle("filter-icon-rotation");
 
     document
-      .querySelector(".filter-container")
+      .querySelector(".left-side-list-mobile .filter-container")
       .classList.toggle("display-flex");
   }
 
@@ -36,6 +38,52 @@ export default function Sweets() {
     <div>
       <div className="sweets-container">
         <div className="left-side-list">
+          <div className="search-bar">
+            <input type="text" placeholder="Search more sweets" />
+          </div>
+          <p className="filter-heading">Filter Sweets</p>
+          <div className="filter-container">
+            <div className="filter-engine">
+              <p>Sweets Type</p>
+              <div className="filter-cakes-types">
+                <div className="filter-form-control">
+                  <label>All types</label>
+                  <input type="checkbox" defaultChecked />
+                </div>
+                <div className="filter-form-control">
+                  <label>Tiramisu</label>
+                  <input type="checkbox" />
+                </div>
+                <div className="filter-form-control">
+                  <label>Chocolate Strawberries</label>
+                  <input type="checkbox" />
+                </div>
+              </div>
+            </div>
+            <div className="filter-engine">
+              <p>Sweets Price</p>
+              <div className="filter-cakes-types">
+                <div className="filter-form-control">
+                  <label>All prices</label>
+                  <input type="checkbox" defaultChecked />
+                </div>
+                <div className="filter-form-control">
+                  <label>$ 40 - 50</label>
+                  <input type="checkbox" />
+                </div>
+                <div className="filter-form-control">
+                  <label>$ 50 - 60</label>
+                  <input type="checkbox" />
+                </div>
+                <div className="filter-form-control">
+                  <label>$ 60 - 70</label>
+                  <input type="checkbox" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="left-side-list-mobile">
           <div className="search-bar">
             <input type="text" placeholder="Search more sweets" />
           </div>

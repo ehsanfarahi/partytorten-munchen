@@ -462,8 +462,11 @@ export default function Cake() {
 
 import { useEffect, useState } from "react";
 
+import { useNavigate } from "react-router-dom";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
+import { MdKeyboardArrowUp } from "react-icons/md";
 
 export default function Cake() {
   const [birthCakesChecked, setBirthCakesChecked] = useState(true);
@@ -494,6 +497,8 @@ export default function Cake() {
       .classList.toggle("filter-rotate-180");
   };
 
+  const navigate = useNavigate();
+
   const [cakes, setCakes] = useState([]);
 
   const [displayContent, setDisplayContent] = useState(true);
@@ -507,8 +512,25 @@ export default function Cake() {
   }
 
   function handlSlide() {
-    document.querySelector(".slide img").classList.toggle("zoomed");
-    document.querySelector(".overlay").classList.toggle("active");
+    navigate("/product-details");
+    // document.querySelector(".slide img").classList.toggle("zoomed");
+    // document.querySelector(".overlay").classList.toggle("active");
+  }
+
+  useEffect(() => {
+    document
+      .querySelector(".left-side-list-mobile .filter-container")
+      .classList.add("display-none");
+  });
+
+  function rotateFilterIcon() {
+    document
+      .querySelector(".filter-icon")
+      .classList.toggle("filter-icon-rotation");
+
+    document
+      .querySelector(".left-side-list-mobile .filter-container")
+      .classList.toggle("display-flex");
   }
 
   return (
@@ -528,6 +550,10 @@ export default function Cake() {
             <div className="filter-engine">
               <div className="filter-cakes-types">
                 <p>Cakes Type</p>
+                <div className="filter-form-control">
+                  <label>All types</label>
+                  <input type="checkbox" defaultChecked />
+                </div>
                 <div className="filter-form-control">
                   <label>
                     Birthday Cakes:{" "}
@@ -630,6 +656,132 @@ export default function Cake() {
             </div>
           </div>
         </div>
+        <div className="left-side-list-mobile">
+          <div className="search-bar">
+            <input type="text" placeholder="Search more cakes" />
+          </div>
+          <p className="filter-heading">
+            Filter Cakes{" "}
+            <MdKeyboardArrowUp
+              className="filter-icon"
+              onClick={rotateFilterIcon}
+            />
+          </p>
+          <div className="filter-container">
+            <FontAwesomeIcon
+              onClick={handleFilter}
+              className="filter-show-hide"
+              icon={faAngleDown}
+            />
+            <div className="filter-engine">
+              <p>Cakes Type</p>
+              <div className="filter-cakes-types">
+                <div className="filter-form-control">
+                  <label>All types</label>
+                  <input type="checkbox" defaultChecked />
+                </div>
+                <div className="filter-form-control">
+                  <label>
+                    Birthday Cakes:{" "}
+                    {
+                      cakes.filter(
+                        (fCake) => fCake.category === "Birthday Cakes"
+                      ).length
+                    }
+                  </label>
+                  <input
+                    type="checkbox"
+                    defaultChecked={birthCakesChecked}
+                    onChange={() => {
+                      handleBirthCakesCheck(birthCakesChecked);
+                    }}
+                  />
+                </div>
+                <div className="filter-form-control">
+                  <label>
+                    Chocolate Cakes:{" "}
+                    {
+                      cakes.filter(
+                        (fCake) => fCake.category === "Chocolate Cakes"
+                      ).length
+                    }
+                  </label>
+                  <input
+                    type="checkbox"
+                    defaultChecked={chocoCakesChecked}
+                    onChange={() => {
+                      handleChocoCakesCheck(chocoCakesChecked);
+                    }}
+                  />
+                </div>
+                <div className="filter-form-control">
+                  <label>
+                    Fruits Cakes:{" "}
+                    {
+                      cakes.filter((fCake) => fCake.category === "Fruits Cakes")
+                        .length
+                    }
+                  </label>
+                  <input
+                    type="checkbox"
+                    defaultChecked={fruitsCakesChecked}
+                    onChange={() => {
+                      handleFruitsCakesCheck(fruitsCakesChecked);
+                    }}
+                  />
+                </div>
+                <div className="filter-form-control">
+                  <label>
+                    Casual Cakes:{" "}
+                    {
+                      cakes.filter((fCake) => fCake.category === "Casual Cakes")
+                        .length
+                    }
+                  </label>
+                  <input
+                    type="checkbox"
+                    defaultChecked={casualCakesChecked}
+                    onChange={() => {
+                      handleCasualCakesCheck(casualCakesChecked);
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="filter-engine">
+              <p>Cakes Price</p>
+              <div className="filter-cakes-types">
+                <div className="filter-form-control">
+                  <label>All prices</label>
+                  <input type="checkbox" defaultChecked />
+                </div>
+                <div className="filter-form-control">
+                  <label>Below $ 40</label>
+                  <input type="checkbox" />
+                </div>
+                <div className="filter-form-control">
+                  <label>$ 40 - 50</label>
+                  <input type="checkbox" />
+                </div>
+                <div className="filter-form-control">
+                  <label>$ 50 - 60</label>
+                  <input type="checkbox" />
+                </div>
+                <div className="filter-form-control">
+                  <label>$ 60 - 70</label>
+                  <input type="checkbox" />
+                </div>
+                <div className="filter-form-control">
+                  <label>Above $ 70</label>
+                  <input type="checkbox" />
+                </div>
+                <div>
+                  <p>Result: {cakes.length} cakes</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="content">
           {birthCakesChecked ? (
             <div>
@@ -648,7 +800,7 @@ export default function Cake() {
                           <p>Weight: 1.5 kg</p>
                         </div>
                       </div>
-                      <div className="slide">
+                      <div className="slide" onClick={handlSlide}>
                         <img
                           src="https://images.unsplash.com/photo-1574451311232-cb647e9d71f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=20"
                           alt="asdf"
