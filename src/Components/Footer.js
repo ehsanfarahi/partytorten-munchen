@@ -29,6 +29,41 @@ const Footer = () => {
             Partytorten Munchen provides variety of cakes, cookies and sweets
             for you!
           </p>
+          <div className="footer-left-bottom">
+            <h3>Try our products today!</h3>
+            <p>
+              <span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="1em"
+                  viewBox="0 0 448 512"
+                >
+                  <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
+                </svg>{" "}
+                Fresh
+              </span>{" "}
+              <span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="1em"
+                  viewBox="0 0 448 512"
+                >
+                  <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
+                </svg>{" "}
+                Cheap
+              </span>{" "}
+              <span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="1em"
+                  viewBox="0 0 448 512"
+                >
+                  <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
+                </svg>{" "}
+                Delicious
+              </span>
+            </p>
+          </div>
         </div>
         <div className="footer-middle">
           <h2>Partytorten Munchen</h2>
@@ -40,7 +75,7 @@ const Footer = () => {
         </div>
         <div className="footer-right">
           <div className="footer-social-media-icons">
-            <p>Follow us on</p>
+            <p>Follow us on:</p>
             <ul>
               <li>
                 <span>
@@ -57,12 +92,17 @@ const Footer = () => {
                   <i className="fab fa-whatsapp icon"></i>
                 </span>
               </li>
+              <li>
+                <span>
+                  <i className="fab fa-viber icon"></i>
+                </span>
+              </li>
             </ul>
           </div>
         </div>
       </div>
       <div className="footer-bottom">
-        <p>www.partytortenmunchen.com | All rights reserved.</p>
+        <p>&copy; 2023 www.partytortenmunchen.com | All rights reserved.</p>
         <p>
           <span>Terms and conditions</span> <span>Policy</span>
         </p>

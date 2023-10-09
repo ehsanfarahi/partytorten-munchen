@@ -16,7 +16,7 @@ const Login = () => {
     let userLoginData = await fetch("http://127.0.0.1:3001/user-login", {
       method: "post",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email }),
+      body: JSON.stringify({ email, password }),
     });
 
     userLoginData = await userLoginData.json();
@@ -24,14 +24,17 @@ const Login = () => {
 
     localStorage.setItem("ptUserLoginData", JSON.stringify(userLoginData));
 
-    fetch("http://127.0.0.1:3001/user-signup?id=" + userLoginData._id).then(
-      (response) => {
-        response.json().then((result) => {
-          navigate("/my-account/" + result._id);
-          alert("Welcome " + result.firstName);
-        });
-      }
-    );
+    navigate("/my-account");
+
+    // fetch("http://127.0.0.1:3001/user-signup?id=" + userLoginData._id).then(
+    //   (response) => {
+    //     response.json().then((result) => {
+    //       navigate("/my-account/" + result._id);
+    //       alert("Welcome " + result.firstName);
+    //       <Navigation iid={result._id} />;
+    //     });
+    //   }
+    // );
   };
 
   function handleSignup() {
@@ -42,7 +45,7 @@ const Login = () => {
     <div>
       <div className="login-form">
         <div className="login-container">
-          <h2 className="login-heading">Sign In Form</h2>
+          <h2 className="login-heading">User Sign In</h2>
           {error ? (
             <>
               <p

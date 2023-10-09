@@ -67,6 +67,7 @@
   padding-left: 1rem;
   font-size: 1.8rem;
   outline: none;
+  color: var(--nav-bar-color);
 }
 
 .login-btn-container {

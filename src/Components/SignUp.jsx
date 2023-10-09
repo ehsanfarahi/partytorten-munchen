@@ -49,7 +49,7 @@ const SignUp = () => {
     <div>
       <div className="signup-form">
         <div className="signup-container">
-          <h2 className="signup-heading">Sign Up Form</h2>
+          <h2 className="signup-heading">User Sign Up</h2>
           <div className="signup-form-control">
             <label htmlFor="firstName">First Name</label>
             <input

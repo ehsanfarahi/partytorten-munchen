@@ -1,22 +1,61 @@
 import { useEffect, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { MdKeyboardArrowUp } from "react-icons/md";
 
 export default function Cookies() {
-  function prev() {
-    document.getElementById("slider-container").scrollLeft -= 150;
+  const [chocolateCookiesChecked, setChocolateCookiesChecked] = useState(true);
+  const [honeyCookiesChecked, setHoneyCookiesChecked] = useState(true);
+  const [saltyCookiesChecked, setSaltyCookiesChecked] = useState(true);
+  const [homeMadeCookiesChecked, setHomeMadeCookiesChecked] = useState(true);
+
+  const handleChocolateCookiesCheck = (e) => {
+    setChocolateCookiesChecked(!e);
+  };
+
+  const handleHoneyCookiesCheck = (e) => {
+    setHoneyCookiesChecked(!e);
+  };
+
+  const handleSaltyCookiesCheck = (e) => {
+    setSaltyCookiesChecked(!e);
+  };
+
+  const handleHomeMadeCookiesCheck = (e) => {
+    setHomeMadeCookiesChecked(!e);
+  };
+
+  const [cookies, setCookies] = useState([]);
+
+  const [displayContent, setDisplayContent] = useState(false);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:3001/products").then((response) => {
+      response.json().then((result) => {
+        setCookies(result);
+        setDisplayContent(true);
+      });
+    });
+  }, []);
+
+  function prev(num) {
+    document.getElementById(`slider-container-${num}`).scrollLeft -= 150;
   }
 
-  function next() {
-    document.getElementById("slider-container").scrollLeft += 150;
+  function next(num) {
+    document.getElementById(`slider-container-${num}`).scrollLeft += 150;
+    console.log(num);
   }
 
-  function handlSlide() {
-    document.querySelector(".slide img").classList.toggle("zoomed");
-    document.querySelector(".overlay").classList.toggle("active");
-  }
+  function handlSlide(id) {
+    navigate("/product-details/" + id);
 
-  const [displayContent, setDisplayContent] = useState(true);
+    // document.querySelector(".slide img").classList.toggle("zoomed");
+    // document.querySelector(".overlay").classList.toggle("active");
+  }
 
   useEffect(() => {
     document
@@ -46,17 +85,89 @@ export default function Cookies() {
             <div className="filter-engine">
               <p>Cookies Type</p>
               <div className="filter-cookies-types">
-                <div className="filter-form-control">
+                {/* <div className="filter-form-control">
                   <label>All types</label>
                   <input type="checkbox" defaultChecked />
+                </div> */}
+                <div className="filter-form-control">
+                  <input
+                    type="checkbox"
+                    defaultChecked={chocolateCookiesChecked}
+                    onChange={() => {
+                      handleChocolateCookiesCheck(chocolateCookiesChecked);
+                    }}
+                  />
+                  <label>
+                    Chocolate Cookies: (
+                    {
+                      cookies.filter(
+                        (fCookie) =>
+                          fCookie.category === "Cookies" &&
+                          fCookie.type === "Chocolate Cookies"
+                      ).length
+                    }
+                    )
+                  </label>
                 </div>
                 <div className="filter-form-control">
-                  <label>Chocolate</label>
-                  <input type="checkbox" />
+                  <input
+                    type="checkbox"
+                    defaultChecked={honeyCookiesChecked}
+                    onChange={() => {
+                      handleHoneyCookiesCheck(honeyCookiesChecked);
+                    }}
+                  />
+                  <label>
+                    Honey Cookies: (
+                    {
+                      cookies.filter(
+                        (fCookie) =>
+                          fCookie.category === "Cookies" &&
+                          fCookie.type === "Honey Cookies"
+                      ).length
+                    }
+                    )
+                  </label>
                 </div>
                 <div className="filter-form-control">
-                  <label>Home made</label>
-                  <input type="checkbox" />
+                  <input
+                    type="checkbox"
+                    defaultChecked={saltyCookiesChecked}
+                    onChange={() => {
+                      handleSaltyCookiesCheck(saltyCookiesChecked);
+                    }}
+                  />
+                  <label>
+                    Salty Cookies: (
+                    {
+                      cookies.filter(
+                        (fCookie) =>
+                          fCookie.category === "Cookies" &&
+                          fCookie.type === "Salty Cookies"
+                      ).length
+                    }
+                    )
+                  </label>
+                </div>
+                <div className="filter-form-control">
+                  <input
+                    type="checkbox"
+                    defaultChecked={homeMadeCookiesChecked}
+                    onChange={() => {
+                      handleHomeMadeCookiesCheck(homeMadeCookiesChecked);
+                    }}
+                  />
+                  <label>
+                    Home Made Cookies: (
+                    {
+                      cookies.filter(
+                        (fCookie) =>
+                          fCookie.category === "Cookies" &&
+                          fCookie.type === "Home Made Cookies"
+                      ).length
+                    }
+                    )
+                  </label>
                 </div>
               </div>
             </div>
@@ -64,20 +175,93 @@ export default function Cookies() {
               <p>Cookies Price</p>
               <div className="filter-cookies-types">
                 <div className="filter-form-control">
-                  <label>All prices</label>
                   <input type="checkbox" defaultChecked />
+                  <label>All prices</label>
                 </div>
                 <div className="filter-form-control">
-                  <label>$ 40 - 50</label>
-                  <input type="checkbox" />
+                  <input type="checkbox" defaultChecked />
+                  <label>
+                    Below $ 40: (
+                    {
+                      cookies.filter(
+                        (fCookie) =>
+                          fCookie.category === "Cookies" && fCookie.price < 40
+                      ).length
+                    }
+                    )
+                  </label>
                 </div>
                 <div className="filter-form-control">
-                  <label>$ 50 - 60</label>
-                  <input type="checkbox" />
+                  <input type="checkbox" defaultChecked />
+                  <label>
+                    $ 40 - 50: (
+                    {
+                      cookies.filter(
+                        (fCookie) =>
+                          fCookie.category === "Cookies" &&
+                          fCookie.price >= 40 &&
+                          fCookie.price <= 50
+                      ).length
+                    }
+                    )
+                  </label>
                 </div>
                 <div className="filter-form-control">
-                  <label>$ 60 - 70</label>
-                  <input type="checkbox" />
+                  <input type="checkbox" defaultChecked />
+                  <label>
+                    $ 51 - 60: (
+                    {
+                      cookies.filter(
+                        (fCookie) =>
+                          fCookie.category === "Cookies" &&
+                          fCookie.price >= 51 &&
+                          fCookie.price <= 60
+                      ).length
+                    }
+                    )
+                  </label>
+                </div>
+                <div className="filter-form-control">
+                  <input type="checkbox" defaultChecked />
+                  <label>
+                    $ 61 - 70: (
+                    {
+                      cookies.filter(
+                        (fCookie) =>
+                          fCookie.category === "Cookies" &&
+                          fCookie.price >= 61 &&
+                          fCookie.price <= 70
+                      ).length
+                    }
+                    )
+                  </label>
+                </div>
+                <div className="filter-form-control">
+                  <input type="checkbox" defaultChecked />
+                  <label>
+                    Above $ 70: (
+                    {
+                      cookies.filter(
+                        (fCookie) =>
+                          fCookie.category === "Cookies" && fCookie.price > 70
+                      ).length
+                    }
+                    )
+                  </label>
+                </div>
+                <div>
+                  <p>
+                    Result:{" "}
+                    {
+                      cookies.filter(
+                        (fCookie) => fCookie.category === "Cookies"
+                      ).length
+                    }{" "}
+                    {cookies.filter((fCookie) => fCookie.category === "Cookies")
+                      .length === 1
+                      ? "cookie"
+                      : "cookies"}
+                  </p>
                 </div>
               </div>
             </div>
@@ -98,13 +282,89 @@ export default function Cookies() {
             <div className="filter-engine">
               <p>Cookies Type</p>
               <div className="filter-cakes-types">
+                {/* <div className="filter-form-control">
+                  <label>All types</label>
+                  <input type="checkbox" defaultChecked />
+                </div> */}
                 <div className="filter-form-control">
-                  <label>Chocolate</label>
-                  <input type="checkbox" />
+                  <input
+                    type="checkbox"
+                    defaultChecked={chocolateCookiesChecked}
+                    onChange={() => {
+                      handleChocolateCookiesCheck(chocolateCookiesChecked);
+                    }}
+                  />
+                  <label>
+                    Chocolate Cookies: (
+                    {
+                      cookies.filter(
+                        (fCookie) =>
+                          fCookie.category === "Cookies" &&
+                          fCookie.type === "Chocolate Cookies"
+                      ).length
+                    }
+                    )
+                  </label>
                 </div>
                 <div className="filter-form-control">
-                  <label>Home made</label>
-                  <input type="checkbox" />
+                  <input
+                    type="checkbox"
+                    defaultChecked={honeyCookiesChecked}
+                    onChange={() => {
+                      handleHoneyCookiesCheck(honeyCookiesChecked);
+                    }}
+                  />
+                  <label>
+                    Honey Cookies: (
+                    {
+                      cookies.filter(
+                        (fCookie) =>
+                          fCookie.category === "Cookies" &&
+                          fCookie.type === "Honey Cookies"
+                      ).length
+                    }
+                    )
+                  </label>
+                </div>
+                <div className="filter-form-control">
+                  <input
+                    type="checkbox"
+                    defaultChecked={saltyCookiesChecked}
+                    onChange={() => {
+                      handleSaltyCookiesCheck(saltyCookiesChecked);
+                    }}
+                  />
+                  <label>
+                    Salty Cookies: (
+                    {
+                      cookies.filter(
+                        (fCookie) =>
+                          fCookie.category === "Cookies" &&
+                          fCookie.type === "Salty Cookies"
+                      ).length
+                    }
+                    )
+                  </label>
+                </div>
+                <div className="filter-form-control">
+                  <input
+                    type="checkbox"
+                    defaultChecked={homeMadeCookiesChecked}
+                    onChange={() => {
+                      handleHomeMadeCookiesCheck(homeMadeCookiesChecked);
+                    }}
+                  />
+                  <label>
+                    Home Made Cookies: (
+                    {
+                      cookies.filter(
+                        (fCookie) =>
+                          fCookie.category === "Cookies" &&
+                          fCookie.type === "Home Made Cookies"
+                      ).length
+                    }
+                    )
+                  </label>
                 </div>
               </div>
             </div>
@@ -112,114 +372,450 @@ export default function Cookies() {
               <p>Cookies Price</p>
               <div className="filter-cakes-types">
                 <div className="filter-form-control">
-                  <label>$ 40 - 50</label>
-                  <input type="checkbox" />
+                  <input type="checkbox" defaultChecked />
+                  <label>All prices</label>
                 </div>
                 <div className="filter-form-control">
-                  <label>$ 50 - 60</label>
-                  <input type="checkbox" />
+                  <input type="checkbox" defaultChecked />
+                  <label>
+                    Below $ 40: (
+                    {
+                      cookies.filter(
+                        (fCookie) =>
+                          fCookie.category === "Cookies" && fCookie.price < 40
+                      ).length
+                    }
+                    )
+                  </label>
                 </div>
                 <div className="filter-form-control">
-                  <label>$ 60 - 70</label>
-                  <input type="checkbox" />
+                  <input type="checkbox" defaultChecked />
+                  <label>
+                    $ 40 - 50: (
+                    {
+                      cookies.filter(
+                        (fCookie) =>
+                          fCookie.category === "Cookies" &&
+                          fCookie.price >= 40 &&
+                          fCookie.price <= 50
+                      ).length
+                    }
+                    )
+                  </label>
                 </div>
+                <div className="filter-form-control">
+                  <input type="checkbox" defaultChecked />
+                  <label>
+                    $ 51 - 60: (
+                    {
+                      cookies.filter(
+                        (fCookie) =>
+                          fCookie.category === "Cookies" &&
+                          fCookie.price >= 51 &&
+                          fCookie.price <= 60
+                      ).length
+                    }
+                    )
+                  </label>
+                </div>
+                <div className="filter-form-control">
+                  <input type="checkbox" defaultChecked />
+                  <label>
+                    $ 61 - 70: (
+                    {
+                      cookies.filter(
+                        (fCookie) =>
+                          fCookie.category === "Cookies" &&
+                          fCookie.price >= 61 &&
+                          fCookie.price <= 70
+                      ).length
+                    }
+                    )
+                  </label>
+                </div>
+                <div className="filter-form-control">
+                  <input type="checkbox" defaultChecked />
+                  <label>
+                    Above $ 70: (
+                    {
+                      cookies.filter(
+                        (fCookie) =>
+                          fCookie.category === "Cookies" && fCookie.price > 70
+                      ).length
+                    }
+                    )
+                  </label>
+                </div>
+              </div>
+              <div>
+                <p>
+                  Result:{" "}
+                  {
+                    cookies.filter((fCookie) => fCookie.category === "Cookies")
+                      .length
+                  }{" "}
+                  {cookies.filter((fCookie) => fCookie.category === "Cookies")
+                    .length === 1
+                    ? "cookie"
+                    : "cookies"}
+                </p>
               </div>
             </div>
           </div>
         </div>
         <div className="content">
-          {displayContent ? (
-            <>
-              <div className="birthday-cakes">
-                <h2>Chocolate Cookies</h2>
-                <div id="slider-container" className="slider">
-                  <div className="slide" onClick={handlSlide}>
-                    <img
-                      src="https://images.unsplash.com/photo-1574482620811-1aa16ffe3c82?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=20"
-                      alt="asdf"
-                    />
-                    <div className="img-overlay">
-                      <p>Price: $ 50</p>
-                      <p>Weight: 1.5 kg</p>
+          {chocolateCookiesChecked ? (
+            <div>
+              {displayContent ? (
+                <>
+                  <div className="c-birthday-cakes">
+                    <h2>Chocolate Cookies</h2>
+                    <div id="slider-container-one" className="slider">
+                      {cookies
+                        .filter(
+                          (fCookie) =>
+                            fCookie.category === "Cookies" &&
+                            fCookie.type === "Chocolate Cookies"
+                        )
+                        .map((cookie, i) => {
+                          return (
+                            <div
+                              key={cookie._id}
+                              className="slide"
+                              onClick={() => handlSlide(cookie._id)}
+                            >
+                              <img
+                                src={require(`../uploads/productsImages/${cookie.image}`)}
+                                alt={cookie.type}
+                              />
+                              <div className="img-overlay">
+                                <p>{cookie.type}</p>
+                                <p>Weight: {cookie.weight} kg</p>
+                                <p>Price: $ {cookie.price}</p>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      {cookies.filter(
+                        (fCookie) =>
+                          fCookie.category === "Cookies" &&
+                          fCookie.type === "Chocolate Cookies"
+                      ).length >= 5 ? (
+                        <>
+                          <div
+                            onClick={() => prev("one")}
+                            className="control-prev-btn"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              height="1em"
+                              viewBox="0 0 320 512"
+                            >
+                              <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
+                            </svg>
+                          </div>
+                          <div
+                            onClick={() => next("one")}
+                            className="control-next-btn"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              height="1em"
+                              viewBox="0 0 320 512"
+                            >
+                              <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
+                            </svg>
+                          </div>
+                        </>
+                      ) : (
+                        <></>
+                      )}
+                    </div>
+                  </div>{" "}
+                </>
+              ) : (
+                <>
+                  <div className="shadow-placeholder">
+                    <div className="shadow-placeholder-title"></div>
+                    <div className="shadow-placeholder-slider">
+                      <div className="shadow-placeholder-slide"></div>
+                      <div className="shadow-placeholder-slide"></div>
+                      <div className="shadow-placeholder-slide"></div>
+                      <div className="shadow-placeholder-slide"></div>
+                      <div className="shadow-placeholder-slide"></div>
+                      <div className="shadow-placeholder-slide-mini"></div>
                     </div>
                   </div>
-                  <div className="slide">
-                    <img
-                      src="https://images.unsplash.com/photo-1574451311232-cb647e9d71f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=20"
-                      alt="asdf"
-                    />
-                  </div>
-                  <div className="slide">
-                    <img
-                      src="https://images.unsplash.com/photo-1574449423472-4bc6a3d2473d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=20"
-                      alt="sdf"
-                    />
-                  </div>
-                  <div className="slide">
-                    <img
-                      src="https://images.unsplash.com/photo-1574459472673-09bbda49102a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=928&q=20"
-                      alt="dsf"
-                    />
-                  </div>
-                  <div className="slide">
-                    <img
-                      src="https://images.unsplash.com/photo-1479981280584-037818c1297d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=20"
-                      alt="df"
-                    />
-                  </div>
-                  <div className="slide">
-                    <img
-                      src="https://images.unsplash.com/photo-1511593358241-7eea1f3c84e5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=20"
-                      alt="df"
-                    />
-                  </div>
-                  <div className="slide">
-                    <img
-                      src="https://images.unsplash.com/photo-1560259324-12a044e67c34?ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=20"
-                      alt="asd"
-                    />
-                  </div>
-                  <div className="slide">
-                    <img
-                      src="images.unsplash.com/photo-1532787799187-93655e51d472?ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=20"
-                      alt="df"
-                    />
-                  </div>
-                  <div onClick={prev} className="control-prev-btn">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      height="1em"
-                      viewBox="0 0 320 512"
-                    >
-                      <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
-                    </svg>
-                  </div>
-                  <div onClick={next} className="control-next-btn">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      height="1em"
-                      viewBox="0 0 320 512"
-                    >
-                      <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
-                    </svg>
-                  </div>
-                </div>
-              </div>{" "}
-            </>
+                </>
+              )}
+            </div>
           ) : (
-            <>
-              <div className="shadow-placeholder">
-                <div className="shadow-placeholder-title"></div>
-                <div className="shadow-placeholder-slider">
-                  <div className="shadow-placeholder-slide"></div>
-                  <div className="shadow-placeholder-slide"></div>
-                  <div className="shadow-placeholder-slide"></div>
-                  <div className="shadow-placeholder-slide"></div>
-                  <div className="shadow-placeholder-slide"></div>
-                  <div className="shadow-placeholder-slide-mini"></div>
-                </div>
-              </div>
-            </>
+            false
+          )}
+          {honeyCookiesChecked ? (
+            <div>
+              {displayContent ? (
+                <>
+                  <div className="birthday-cakes">
+                    <h2>Honey Cookies</h2>
+                    <div id="slider-container-two" className="slider">
+                      {cookies
+                        .filter(
+                          (fCookie) =>
+                            fCookie.category === "Cookies" &&
+                            fCookie.type === "Honey Cookies"
+                        )
+                        .map((cookie, i) => {
+                          return (
+                            <div
+                              key={cookie._id}
+                              className="slide"
+                              onClick={() => handlSlide(cookie._id)}
+                            >
+                              <img
+                                src={require(`../uploads/productsImages/${cookie.image}`)}
+                                alt={cookie.type}
+                              />
+                              <div className="img-overlay">
+                                <p>{cookie.type}</p>
+                                <p>Weight: {cookie.weight} kg</p>
+                                <p>Price: $ {cookie.price}</p>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      {cookies.filter(
+                        (fCookie) =>
+                          fCookie.category === "Cookies" &&
+                          fCookie.type === "Honey Cookies"
+                      ).length >= 5 ? (
+                        <>
+                          <div
+                            onClick={() => prev("two")}
+                            className="control-prev-btn"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              height="1em"
+                              viewBox="0 0 320 512"
+                            >
+                              <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
+                            </svg>
+                          </div>
+                          <div
+                            onClick={() => next("two")}
+                            className="control-next-btn"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              height="1em"
+                              viewBox="0 0 320 512"
+                            >
+                              <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
+                            </svg>
+                          </div>
+                        </>
+                      ) : (
+                        <></>
+                      )}
+                    </div>
+                  </div>{" "}
+                </>
+              ) : (
+                <>
+                  <div className="shadow-placeholder">
+                    <div className="shadow-placeholder-title"></div>
+                    <div className="shadow-placeholder-slider">
+                      <div className="shadow-placeholder-slide"></div>
+                      <div className="shadow-placeholder-slide"></div>
+                      <div className="shadow-placeholder-slide"></div>
+                      <div className="shadow-placeholder-slide"></div>
+                      <div className="shadow-placeholder-slide"></div>
+                      <div className="shadow-placeholder-slide-mini"></div>
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+          ) : (
+            false
+          )}
+          {saltyCookiesChecked ? (
+            <div>
+              {displayContent ? (
+                <>
+                  <div className="birthday-cakes">
+                    <h2>Salty Cookies</h2>
+                    <div id="slider-container-three" className="slider">
+                      {cookies
+                        .filter(
+                          (fCookie) =>
+                            fCookie.category === "Cookies" &&
+                            fCookie.type === "Salty Cookies"
+                        )
+                        .map((cookie, i) => {
+                          return (
+                            <div
+                              key={cookie._id}
+                              className="slide"
+                              onClick={() => handlSlide(cookie._id)}
+                            >
+                              <img
+                                src={require(`../uploads/productsImages/${cookie.image}`)}
+                                alt={cookie.type}
+                              />
+                              <div className="img-overlay">
+                                <p>{cookie.type}</p>
+                                <p>Weight: {cookie.weight} kg</p>
+                                <p>Price: $ {cookie.price}</p>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      {cookies.filter(
+                        (fCookie) =>
+                          fCookie.category === "Cookies" &&
+                          fCookie.type === "Salty Cookies"
+                      ).length >= 5 ? (
+                        <>
+                          {" "}
+                          <div
+                            onClick={() => prev("three")}
+                            className="control-prev-btn"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              height="1em"
+                              viewBox="0 0 320 512"
+                            >
+                              <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
+                            </svg>
+                          </div>
+                          <div
+                            onClick={() => next("three")}
+                            className="control-next-btn"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              height="1em"
+                              viewBox="0 0 320 512"
+                            >
+                              <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
+                            </svg>
+                          </div>
+                        </>
+                      ) : (
+                        <></>
+                      )}
+                    </div>
+                  </div>{" "}
+                </>
+              ) : (
+                <>
+                  <div className="shadow-placeholder">
+                    <div className="shadow-placeholder-title"></div>
+                    <div className="shadow-placeholder-slider">
+                      <div className="shadow-placeholder-slide"></div>
+                      <div className="shadow-placeholder-slide"></div>
+                      <div className="shadow-placeholder-slide"></div>
+                      <div className="shadow-placeholder-slide"></div>
+                      <div className="shadow-placeholder-slide"></div>
+                      <div className="shadow-placeholder-slide-mini"></div>
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+          ) : (
+            false
+          )}
+          {homeMadeCookiesChecked ? (
+            <div>
+              {displayContent ? (
+                <>
+                  <div className="birthday-cakes">
+                    <h2>Home Made Cookies</h2>
+                    <div id="slider-container-four" className="slider">
+                      {cookies
+                        .filter(
+                          (fCookie) =>
+                            fCookie.category === "Cookies" &&
+                            fCookie.type === "Home Made Cookies"
+                        )
+                        .map((cookie, i) => {
+                          return (
+                            <div
+                              key={cookie._id}
+                              className="slide"
+                              onClick={() => handlSlide(cookie._id)}
+                            >
+                              <img
+                                src={require(`../uploads/productsImages/${cookie.image}`)}
+                                alt={cookie.type}
+                              />
+                              <div className="img-overlay">
+                                <p>{cookie.type}</p>
+                                <p>Weight: {cookie.weight} kg</p>
+                                <p>Price: $ {cookie.price}</p>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      {cookies.filter(
+                        (fCookie) =>
+                          fCookie.category === "Cookies" &&
+                          fCookie.type === "Home Made Cookies"
+                      ).length >= 5 ? (
+                        <>
+                          <div
+                            onClick={() => prev("four")}
+                            className="control-prev-btn"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              height="1em"
+                              viewBox="0 0 320 512"
+                            >
+                              <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
+                            </svg>
+                          </div>
+                          <div
+                            onClick={() => next("four")}
+                            className="control-next-btn"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              height="1em"
+                              viewBox="0 0 320 512"
+                            >
+                              <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
+                            </svg>
+                          </div>
+                        </>
+                      ) : (
+                        <></>
+                      )}
+                    </div>
+                  </div>{" "}
+                </>
+              ) : (
+                <>
+                  <div className="shadow-placeholder">
+                    <div className="shadow-placeholder-title"></div>
+                    <div className="shadow-placeholder-slider">
+                      <div className="shadow-placeholder-slide"></div>
+                      <div className="shadow-placeholder-slide"></div>
+                      <div className="shadow-placeholder-slide"></div>
+                      <div className="shadow-placeholder-slide"></div>
+                      <div className="shadow-placeholder-slide"></div>
+                      <div className="shadow-placeholder-slide-mini"></div>
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+          ) : (
+            false
           )}
         </div>
         <div className="overlay" onClick={handlSlide}></div>

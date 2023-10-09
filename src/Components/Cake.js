@@ -1,14 +1,24 @@
-/*
 import { useEffect, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
+import { MdKeyboardArrowUp } from "react-icons/md";
 
 export default function Cake() {
   const [birthCakesChecked, setBirthCakesChecked] = useState(true);
   const [chocoCakesChecked, setChocoCakesChecked] = useState(true);
   const [fruitsCakesChecked, setFruitsCakesChecked] = useState(true);
   const [casualCakesChecked, setCasualCakesChecked] = useState(true);
+
+  const [allPrices, setAllPrices] = useState(false);
+  const [priceBelowFourty, setPriceBelowFourty] = useState(false);
+  const [priceBetweenFourtyFifty, setPriceBetweenFourtyFifty] = useState(true);
+  const [priceBetweenFiftySixty, setPriceBetweenFiftySixty] = useState(true);
+  const [priceBetweenSixtySeventy, setPriceBetweenSixtySeventy] =
+    useState(true);
+  const [priceAboveSeventy, setPriceAboveSeventy] = useState(true);
+
+  const [cakePrice, setCakePrice] = useState("");
 
   const handleBirthCakesCheck = (e) => {
     setBirthCakesChecked(!e);
@@ -26,19 +36,21 @@ export default function Cake() {
     setCasualCakesChecked(!e);
   };
 
-  const handleFilter = () => {
-    document.querySelector(".filter-engine").classList.toggle("display-none");
-    document
-      .querySelector(".filter-show-hide")
-      .classList.toggle("filter-rotate-180");
-  };
+  // const handleFilter = () => {
+  //   document.querySelector(".filter-engine").classList.toggle("display-none");
+  //   document
+  //     .querySelector(".filter-show-hide")
+  //     .classList.toggle("filter-rotate-180");
+  // };
 
   const [cakes, setCakes] = useState([]);
 
   const [displayContent, setDisplayContent] = useState(false);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
-    fetch("http://127.0.0.1:3001/cakes").then((response) => {
+    fetch("http://127.0.0.1:3001/products").then((response) => {
       response.json().then((result) => {
         setCakes(result);
         setDisplayContent(true);
@@ -46,17 +58,35 @@ export default function Cake() {
     });
   }, []);
 
-  function prev() {
-    document.getElementById("slider-container").scrollLeft -= 150;
+  function prev(num) {
+    document.getElementById(`slider-container-${num}`).scrollLeft -= 150;
   }
 
-  function next() {
-    document.getElementById("slider-container").scrollLeft += 150;
+  function next(num) {
+    document.getElementById(`slider-container-${num}`).scrollLeft += 150;
+    console.log(num);
   }
 
-  function handlSlide() {
-    document.querySelector(".slide img").classList.toggle("zoomed");
-    document.querySelector(".overlay").classList.toggle("active");
+  function handlSlide(id) {
+    navigate("/product-details/" + id);
+    // document.querySelector(".slide img").classList.toggle("zoomed");
+    // document.querySelector(".overlay").classList.toggle("active");
+  }
+
+  useEffect(() => {
+    document
+      .querySelector(".left-side-list-mobile .filter-container")
+      .classList.add("display-none");
+  });
+
+  function rotateFilterIcon() {
+    document
+      .querySelector(".filter-icon")
+      .classList.toggle("filter-icon-rotation");
+
+    document
+      .querySelector(".left-side-list-mobile .filter-container")
+      .classList.toggle("display-flex");
   }
 
   return (
@@ -66,25 +96,12 @@ export default function Cake() {
           <div className="search-bar">
             <input type="text" placeholder="Search more cakes" />
           </div>
+          <p className="filter-heading">Filter Cakes</p>
           <div className="filter-container">
-            <p className="filter-heading">Filter Cakes</p>{" "}
-            <FontAwesomeIcon
-              onClick={handleFilter}
-              className="filter-show-hide"
-              icon={faAngleDown}
-            />
             <div className="filter-engine">
+              <p>Cakes Type</p>
               <div className="filter-cakes-types">
-                <p>Cakes Type</p>
                 <div className="filter-form-control">
-                  <label>
-                    Birthday Cakes:{" "}
-                    {
-                      cakes.filter(
-                        (fCake) => fCake.category === "Birthday Cakes"
-                      ).length
-                    }
-                  </label>
                   <input
                     type="checkbox"
                     defaultChecked={birthCakesChecked}
@@ -92,16 +109,19 @@ export default function Cake() {
                       handleBirthCakesCheck(birthCakesChecked);
                     }}
                   />
-                </div>
-                <div className="filter-form-control">
                   <label>
-                    Chocolate Cakes:{" "}
+                    Birthday Cakes: (
                     {
                       cakes.filter(
-                        (fCake) => fCake.category === "Chocolate Cakes"
+                        (fCake) =>
+                          fCake.category === "Cakes" &&
+                          fCake.type === "Birthday Cakes"
                       ).length
                     }
+                    )
                   </label>
+                </div>
+                <div className="filter-form-control">
                   <input
                     type="checkbox"
                     defaultChecked={chocoCakesChecked}
@@ -109,15 +129,19 @@ export default function Cake() {
                       handleChocoCakesCheck(chocoCakesChecked);
                     }}
                   />
+                  <label>
+                    Chocolate Cakes: (
+                    {
+                      cakes.filter(
+                        (fCake) =>
+                          fCake.category === "Cakes" &&
+                          fCake.type === "Chocolate Cakes"
+                      ).length
+                    }
+                    )
+                  </label>
                 </div>
                 <div className="filter-form-control">
-                  <label>
-                    Fruits Cakes:{" "}
-                    {
-                      cakes.filter((fCake) => fCake.category === "Fruits Cakes")
-                        .length
-                    }
-                  </label>
                   <input
                     type="checkbox"
                     defaultChecked={fruitsCakesChecked}
@@ -125,15 +149,19 @@ export default function Cake() {
                       handleFruitsCakesCheck(fruitsCakesChecked);
                     }}
                   />
+                  <label>
+                    Fruits Cakes: (
+                    {
+                      cakes.filter(
+                        (fCake) =>
+                          fCake.category === "Cakes" &&
+                          fCake.type === "Fruits Cakes"
+                      ).length
+                    }
+                    )
+                  </label>
                 </div>
                 <div className="filter-form-control">
-                  <label>
-                    Casual Cakes:{" "}
-                    {
-                      cakes.filter((fCake) => fCake.category === "Casual Cakes")
-                        .length
-                    }
-                  </label>
                   <input
                     type="checkbox"
                     defaultChecked={casualCakesChecked}
@@ -141,39 +169,301 @@ export default function Cake() {
                       handleCasualCakesCheck(casualCakesChecked);
                     }}
                   />
+                  <label>
+                    Casual Cakes: (
+                    {
+                      cakes.filter(
+                        (fCake) =>
+                          fCake.category === "Cakes" &&
+                          fCake.type === "Casual Cakes"
+                      ).length
+                    }
+                    )
+                  </label>
                 </div>
               </div>
             </div>
             <div className="filter-engine">
+              <p>Cakes Price</p>
               <div className="filter-cakes-types">
-                <p>Cakes Price</p>
                 <div className="filter-form-control">
+                  <input defaultChecked type="checkbox" />
                   <label>All prices</label>
+                </div>
+                <div className="filter-form-control">
                   <input type="checkbox" defaultChecked />
+                  <label>
+                    Below $ 40: (
+                    {
+                      cakes.filter(
+                        (fCake) =>
+                          fCake.category === "Cakes" && fCake.price < 40
+                      ).length
+                    }
+                    )
+                  </label>
                 </div>
                 <div className="filter-form-control">
-                  <label>Below $ 40</label>
-                  <input type="checkbox" />
+                  <input type="checkbox" defaultChecked />
+                  <label>
+                    $ 40 - 50: (
+                    {
+                      cakes.filter(
+                        (fCake) =>
+                          fCake.category === "Cakes" &&
+                          fCake.price >= 40 &&
+                          fCake.price <= 50
+                      ).length
+                    }
+                    )
+                  </label>
                 </div>
                 <div className="filter-form-control">
-                  <label>$ 40 - 50</label>
-                  <input type="checkbox" />
+                  <input type="checkbox" defaultChecked />
+                  <label>
+                    $ 51 - 60: (
+                    {
+                      cakes.filter(
+                        (fCake) =>
+                          fCake.category === "Cakes" &&
+                          fCake.price >= 51 &&
+                          fCake.price <= 60
+                      ).length
+                    }
+                    )
+                  </label>
                 </div>
                 <div className="filter-form-control">
-                  <label>$ 50 - 60</label>
-                  <input type="checkbox" />
+                  <input type="checkbox" defaultChecked />
+                  <label>
+                    $ 61 - 70: (
+                    {
+                      cakes.filter(
+                        (fCake) =>
+                          fCake.category === "Cakes" &&
+                          fCake.price >= 61 &&
+                          fCake.price <= 70
+                      ).length
+                    }
+                    )
+                  </label>
                 </div>
                 <div className="filter-form-control">
-                  <label>$ 60 - 70</label>
-                  <input type="checkbox" />
-                </div>
-                <div className="filter-form-control">
-                  <label>Above $ 70</label>
-                  <input type="checkbox" />
+                  <input type="checkbox" defaultChecked />
+                  <label>
+                    Above $ 70: (
+                    {
+                      cakes.filter(
+                        (fCake) =>
+                          fCake.category === "Cakes" && fCake.price > 70
+                      ).length
+                    }
+                    )
+                  </label>
                 </div>
                 <div>
-                  <p>Result: {cakes.length} cakes</p>
+                  <p>
+                    Result:{" "}
+                    {cakes.filter((fCake) => fCake.category === "Cakes").length}{" "}
+                    {cakes.filter((fCake) => fCake.category === "Cakes")
+                      .length === 1
+                      ? "cake"
+                      : "cakes"}
+                  </p>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="left-side-list-mobile">
+          <div className="search-bar">
+            <input type="text" placeholder="Search more cakes" />
+          </div>
+          <p className="filter-heading">
+            Filter Cakes{" "}
+            <MdKeyboardArrowUp
+              className="filter-icon"
+              onClick={rotateFilterIcon}
+            />
+          </p>
+          <div className="filter-container">
+            <div className="filter-engine">
+              <p>Cakes Type</p>
+              <div className="filter-cakes-types">
+                {/* <div className="filter-form-control">
+                  <label>All types</label>
+                  <input type="checkbox" defaultChecked />
+                </div> */}
+                <div className="filter-form-control">
+                  <input
+                    type="checkbox"
+                    defaultChecked={birthCakesChecked}
+                    onChange={() => {
+                      handleBirthCakesCheck(birthCakesChecked);
+                    }}
+                  />
+                  <label>
+                    Birthday Cakes: (
+                    {
+                      cakes.filter(
+                        (fCake) =>
+                          fCake.category === "Cakes" &&
+                          fCake.type === "Birthday Cakes"
+                      ).length
+                    }
+                    )
+                  </label>
+                </div>
+                <div className="filter-form-control">
+                  <input
+                    type="checkbox"
+                    defaultChecked={chocoCakesChecked}
+                    onChange={() => {
+                      handleChocoCakesCheck(chocoCakesChecked);
+                    }}
+                  />
+                  <label>
+                    Chocolate Cakes: (
+                    {
+                      cakes.filter(
+                        (fCake) =>
+                          fCake.category === "Cakes" &&
+                          fCake.type === "Chocolate Cakes"
+                      ).length
+                    }
+                    )
+                  </label>
+                </div>
+                <div className="filter-form-control">
+                  <input
+                    type="checkbox"
+                    defaultChecked={fruitsCakesChecked}
+                    onChange={() => {
+                      handleFruitsCakesCheck(fruitsCakesChecked);
+                    }}
+                  />
+                  <label>
+                    Fruits Cakes: (
+                    {
+                      cakes.filter(
+                        (fCake) =>
+                          fCake.category === "Cakes" &&
+                          fCake.type === "Fruits Cakes"
+                      ).length
+                    }
+                    )
+                  </label>
+                </div>
+                <div className="filter-form-control">
+                  <input
+                    type="checkbox"
+                    defaultChecked={casualCakesChecked}
+                    onChange={() => {
+                      handleCasualCakesCheck(casualCakesChecked);
+                    }}
+                  />
+                  <label>
+                    Casual Cakes: (
+                    {
+                      cakes.filter(
+                        (fCake) =>
+                          fCake.category === "Cakes" &&
+                          fCake.type === "Casual Cakes"
+                      ).length
+                    }
+                    )
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div className="filter-engine">
+              <p>Cakes Price</p>
+              <div className="filter-cakes-types">
+                <div className="filter-form-control">
+                  <input defaultChecked type="checkbox" />
+                  <label>All prices</label>
+                </div>
+                <div className="filter-form-control">
+                  <input type="checkbox" defaultChecked />
+                  <label>
+                    Below $ 40: (
+                    {
+                      cakes.filter(
+                        (fCake) =>
+                          fCake.category === "Cakes" && fCake.price < 40
+                      ).length
+                    }
+                    )
+                  </label>
+                </div>
+                <div className="filter-form-control">
+                  <input type="checkbox" defaultChecked />
+                  <label>
+                    $ 40 - 50: (
+                    {
+                      cakes.filter(
+                        (fCake) =>
+                          fCake.category === "Cakes" &&
+                          fCake.price >= 40 &&
+                          fCake.price <= 50
+                      ).length
+                    }
+                    )
+                  </label>
+                </div>
+                <div className="filter-form-control">
+                  <input type="checkbox" defaultChecked />
+                  <label>
+                    $ 51 - 60: (
+                    {
+                      cakes.filter(
+                        (fCake) =>
+                          fCake.category === "Cakes" &&
+                          fCake.price >= 51 &&
+                          fCake.price <= 60
+                      ).length
+                    }
+                    )
+                  </label>
+                </div>
+                <div className="filter-form-control">
+                  <input type="checkbox" defaultChecked />
+                  <label>
+                    $ 61 - 70: (
+                    {
+                      cakes.filter(
+                        (fCake) =>
+                          fCake.category === "Cakes" &&
+                          fCake.price >= 61 &&
+                          fCake.price <= 70
+                      ).length
+                    }
+                    )
+                  </label>
+                </div>
+                <div className="filter-form-control">
+                  <input type="checkbox" defaultChecked />
+                  <label>
+                    Above $ 70: (
+                    {
+                      cakes.filter(
+                        (fCake) =>
+                          fCake.category === "Cakes" && fCake.price > 70
+                      ).length
+                    }
+                    )
+                  </label>
+                </div>
+              </div>
+              <div>
+                <p>
+                  Result:{" "}
+                  {cakes.filter((fCake) => fCake.category === "Cakes").length}{" "}
+                  {cakes.filter((fCake) => fCake.category === "Cakes")
+                    .length === 1
+                    ? "cake"
+                    : "cakes"}
+                </p>
               </div>
             </div>
           </div>
@@ -183,48 +473,66 @@ export default function Cake() {
             <div>
               {displayContent ? (
                 <>
-                  <div className="birthday-cakes">
+                  <div className="c-birthday-cakes">
                     <h2>Birthday Cakes</h2>
-                    <div id="slider-container" className="slider">
+                    <div id="slider-container-one" className="slider">
                       {cakes
-                        .filter((fCake) => fCake.category === "Birthday Cakes")
+                        .filter(
+                          (fCake) =>
+                            fCake.category === "Cakes" &&
+                            fCake.type === "Birthday Cakes"
+                        )
                         .map((cake, i) => {
                           return (
                             <div
                               key={cake._id}
                               className="slide"
-                              onClick={handlSlide}
+                              onClick={() => handlSlide(cake._id)}
                             >
                               <img
-                                src={require(`../../../server/uploads/cakesImages/${cake.image}`)}
+                                src={require(`../uploads/productsImages/${cake.image}`)}
                                 alt={cake.type}
                               />
                               <div className="img-overlay">
-                                <p>{cake.type}</p>
+                                <p>{cake.title}</p>
                                 <p>Weight: {cake.weight} kg</p>
                                 <p>Price: $ {cake.price}</p>
                               </div>
                             </div>
                           );
                         })}
-                      <div onClick={prev} className="control-prev-btn">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          height="1em"
-                          viewBox="0 0 320 512"
-                        >
-                          <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
-                        </svg>
-                      </div>
-                      <div onClick={next} className="control-next-btn">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          height="1em"
-                          viewBox="0 0 320 512"
-                        >
-                          <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
-                        </svg>
-                      </div>
+                      {cakes.filter(
+                        (fCake) => fCake.category === "Birthday Cakes"
+                      ).length >= 6 ? (
+                        <>
+                          <div
+                            onClick={() => prev("one")}
+                            className="control-prev-btn"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              height="1em"
+                              viewBox="0 0 320 512"
+                            >
+                              <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
+                            </svg>
+                          </div>
+                          <div
+                            onClick={() => next("one")}
+                            className="control-next-btn"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              height="1em"
+                              viewBox="0 0 320 512"
+                            >
+                              <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
+                            </svg>
+                          </div>
+                        </>
+                      ) : (
+                        <></>
+                      )}
                     </div>
                   </div>{" "}
                 </>
@@ -253,18 +561,22 @@ export default function Cake() {
                 <>
                   <div className="birthday-cakes">
                     <h2>Chocolate Cakes</h2>
-                    <div id="slider-container" className="slider">
+                    <div id="slider-container-two" className="slider">
                       {cakes
-                        .filter((fCake) => fCake.category === "Chocolate Cakes")
+                        .filter(
+                          (fCake) =>
+                            fCake.category === "Cakes" &&
+                            fCake.type === "Chocolate Cakes"
+                        )
                         .map((cake, i) => {
                           return (
                             <div
                               key={cake._id}
                               className="slide"
-                              onClick={handlSlide}
+                              onClick={() => handlSlide(cake._id)}
                             >
                               <img
-                                src={require(`../../../server/uploads/cakesImages/${cake.image}`)}
+                                src={require(`../uploads/productsImages/${cake.image}`)}
                                 alt={cake.type}
                               />
                               <div className="img-overlay">
@@ -275,24 +587,38 @@ export default function Cake() {
                             </div>
                           );
                         })}
-                      <div onClick={prev} className="control-prev-btn">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          height="1em"
-                          viewBox="0 0 320 512"
-                        >
-                          <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
-                        </svg>
-                      </div>
-                      <div onClick={next} className="control-next-btn">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          height="1em"
-                          viewBox="0 0 320 512"
-                        >
-                          <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
-                        </svg>
-                      </div>
+                      {cakes.filter(
+                        (fCake) => fCake.category === "Chocolate Cakes"
+                      ).length >= 6 ? (
+                        <>
+                          <div
+                            onClick={() => prev("two")}
+                            className="control-prev-btn"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              height="1em"
+                              viewBox="0 0 320 512"
+                            >
+                              <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
+                            </svg>
+                          </div>
+                          <div
+                            onClick={() => next("two")}
+                            className="control-next-btn"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              height="1em"
+                              viewBox="0 0 320 512"
+                            >
+                              <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
+                            </svg>
+                          </div>
+                        </>
+                      ) : (
+                        <></>
+                      )}
                     </div>
                   </div>{" "}
                 </>
@@ -321,18 +647,22 @@ export default function Cake() {
                 <>
                   <div className="birthday-cakes">
                     <h2>Fruits Cakes</h2>
-                    <div id="slider-container" className="slider">
+                    <div id="slider-container-three" className="slider">
                       {cakes
-                        .filter((fCake) => fCake.category === "Fruits Cakes")
+                        .filter(
+                          (fCake) =>
+                            fCake.category === "Cakes" &&
+                            fCake.type === "Fruits Cakes"
+                        )
                         .map((cake, i) => {
                           return (
                             <div
                               key={cake._id}
                               className="slide"
-                              onClick={handlSlide}
+                              onClick={() => handlSlide(cake._id)}
                             >
                               <img
-                                src={require(`../../../server/uploads/cakesImages/${cake.image}`)}
+                                src={require(`../uploads/productsImages/${cake.image}`)}
                                 alt={cake.type}
                               />
                               <div className="img-overlay">
@@ -343,24 +673,39 @@ export default function Cake() {
                             </div>
                           );
                         })}
-                      <div onClick={prev} className="control-prev-btn">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          height="1em"
-                          viewBox="0 0 320 512"
-                        >
-                          <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
-                        </svg>
-                      </div>
-                      <div onClick={next} className="control-next-btn">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          height="1em"
-                          viewBox="0 0 320 512"
-                        >
-                          <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
-                        </svg>
-                      </div>
+                      {cakes.filter(
+                        (fCake) => fCake.category === "Fruits Cakes"
+                      ).length >= 6 ? (
+                        <>
+                          {" "}
+                          <div
+                            onClick={() => prev("three")}
+                            className="control-prev-btn"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              height="1em"
+                              viewBox="0 0 320 512"
+                            >
+                              <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
+                            </svg>
+                          </div>
+                          <div
+                            onClick={() => next("three")}
+                            className="control-next-btn"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              height="1em"
+                              viewBox="0 0 320 512"
+                            >
+                              <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
+                            </svg>
+                          </div>
+                        </>
+                      ) : (
+                        <></>
+                      )}
                     </div>
                   </div>{" "}
                 </>
@@ -389,18 +734,22 @@ export default function Cake() {
                 <>
                   <div className="birthday-cakes">
                     <h2>Casual Cakes</h2>
-                    <div id="slider-container" className="slider">
+                    <div id="slider-container-four" className="slider">
                       {cakes
-                        .filter((fCake) => fCake.category === "Casual Cakes")
+                        .filter(
+                          (fCake) =>
+                            fCake.category === "Cakes" &&
+                            fCake.type === "Casual Cakes"
+                        )
                         .map((cake, i) => {
                           return (
                             <div
                               key={cake._id}
                               className="slide"
-                              onClick={handlSlide}
+                              onClick={() => handlSlide(cake._id)}
                             >
                               <img
-                                src={require(`../../../server/uploads/cakesImages/${cake.image}`)}
+                                src={require(`../uploads/productsImages/${cake.image}`)}
                                 alt={cake.type}
                               />
                               <div className="img-overlay">
@@ -411,24 +760,38 @@ export default function Cake() {
                             </div>
                           );
                         })}
-                      <div onClick={prev} className="control-prev-btn">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          height="1em"
-                          viewBox="0 0 320 512"
-                        >
-                          <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
-                        </svg>
-                      </div>
-                      <div onClick={next} className="control-next-btn">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          height="1em"
-                          viewBox="0 0 320 512"
-                        >
-                          <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
-                        </svg>
-                      </div>
+                      {cakes.filter(
+                        (fCake) => fCake.category === "Casual Cakes"
+                      ).length >= 6 ? (
+                        <>
+                          <div
+                            onClick={() => prev("four")}
+                            className="control-prev-btn"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              height="1em"
+                              viewBox="0 0 320 512"
+                            >
+                              <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
+                            </svg>
+                          </div>
+                          <div
+                            onClick={() => next("four")}
+                            className="control-next-btn"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              height="1em"
+                              viewBox="0 0 320 512"
+                            >
+                              <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
+                            </svg>
+                          </div>
+                        </>
+                      ) : (
+                        <></>
+                      )}
                     </div>
                   </div>{" "}
                 </>
@@ -458,8 +821,7 @@ export default function Cake() {
   );
 }
 
-*/
-
+/*
 import { useEffect, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
@@ -1185,3 +1547,5 @@ export default function Cake() {
     </div>
   );
 }
+
+*/
