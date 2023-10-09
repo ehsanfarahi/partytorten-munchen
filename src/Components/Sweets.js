@@ -525,7 +525,7 @@ export default function Sweets() {
                               onClick={() => handlSlide(sweet._id)}
                             >
                               <img
-                                src={require(`../../../server/uploads/productsImages/${sweet.image}`)}
+                                src={require(`../uploads/productsImages/${sweet.image}`)}
                                 alt={sweet.type}
                               />
                               <div className="img-overlay">
