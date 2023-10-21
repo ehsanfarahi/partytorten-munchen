@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
 
+// React Icons
+import { LuArrowUpToLine } from "react-icons/lu";
+import { FaCheck } from "react-icons/fa";
+
 const Footer = () => {
   const [showArrowTop, setShowArrowTop] = useState(false);
 
@@ -24,49 +28,31 @@ const Footer = () => {
     <div className="footer">
       <div className="footer-container">
         <div className="footer-left">
-          <h2>About Partytorten Munchen</h2>
+          <h2>About Partytorten München</h2>
           <p>
-            Partytorten Munchen provides variety of cakes, cookies and sweets
+            Partytorten München provides variety of cakes, cookies and sweets
             for you!
           </p>
           <div className="footer-left-bottom">
             <h3>Try our products today!</h3>
             <p>
               <span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="1em"
-                  viewBox="0 0 448 512"
-                >
-                  <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
-                </svg>{" "}
+                <FaCheck className="slogan-icon" />
                 Fresh
               </span>{" "}
               <span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="1em"
-                  viewBox="0 0 448 512"
-                >
-                  <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
-                </svg>{" "}
+                <FaCheck className="slogan-icon" />
                 Cheap
               </span>{" "}
               <span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="1em"
-                  viewBox="0 0 448 512"
-                >
-                  <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
-                </svg>{" "}
+                <FaCheck className="slogan-icon" />
                 Delicious
               </span>
             </p>
           </div>
         </div>
         <div className="footer-middle">
-          <h2>Partytorten Munchen</h2>
+          <h2>Partytorten München</h2>
           <img
             className="footer-logo"
             src={require("../images/logo.png")}
@@ -75,7 +61,7 @@ const Footer = () => {
         </div>
         <div className="footer-right">
           <div className="footer-social-media-icons">
-            <p>Follow us on:</p>
+            <p>Follow us on</p>
             <ul>
               <li>
                 <span>
@@ -102,7 +88,10 @@ const Footer = () => {
         </div>
       </div>
       <div className="footer-bottom">
-        <p>&copy; 2023 www.partytortenmunchen.com | All rights reserved.</p>
+        <p>
+          &copy; 2023 www.partytortenmunchen.com <sapn className="s-f">|</sapn>{" "}
+          <span className="s-s">All rights reserved.</span>
+        </p>
         <p>
           <span>Terms and conditions</span> <span>Policy</span>
         </p>
@@ -110,13 +99,7 @@ const Footer = () => {
       {showArrowTop ? (
         <div onClick={goToTop} className="arrow-top">
           <span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="1em"
-              viewBox="0 0 384 512"
-            >
-              <path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z" />
-            </svg>
+            <LuArrowUpToLine />
           </span>
         </div>
       ) : (

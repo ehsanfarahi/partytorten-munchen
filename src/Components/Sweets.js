@@ -452,7 +452,7 @@ export default function Sweets() {
                         (fSweet) =>
                           fSweet.category === "Sweets" &&
                           fSweet.type === "Tiramisu"
-                      ).length >= 5 ? (
+                      ).length >= 6 ? (
                         <>
                           <div
                             onClick={() => prev("one")}
@@ -540,7 +540,7 @@ export default function Sweets() {
                         (fSweet) =>
                           fSweet.category === "Sweets" &&
                           fSweet.type === "Chocolate Strawberries"
-                      ).length >= 5 ? (
+                      ).length >= 6 ? (
                         <>
                           <div
                             onClick={() => prev("two")}
@@ -628,7 +628,7 @@ export default function Sweets() {
                         (fSweet) =>
                           fSweet.category === "Sweets" &&
                           fSweet.type === "Cream Rolls"
-                      ).length >= 5 ? (
+                      ).length >= 6 ? (
                         <>
                           {" "}
                           <div
@@ -717,7 +717,7 @@ export default function Sweets() {
                         (fSweet) =>
                           fSweet.category === "Sweets" &&
                           fSweet.type === "Pudding"
-                      ).length >= 5 ? (
+                      ).length >= 6 ? (
                         <>
                           <div
                             onClick={() => prev("four")}

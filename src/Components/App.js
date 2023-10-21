@@ -31,6 +31,7 @@ import ContactUsMessages from "./ContactUsMessages";
 import OrdersDetails from "./OrdersDetails";
 import UsersList from "./UsersList";
 import CookiesPrivacy from "./CookiesPrivacy";
+import CakesList from "./CakesList";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/cakes-page" element={<Cake />} />
+          <Route path="/cakes-list" element={<CakesList />} />
           <Route path="/cookies-page" element={<Cookies />} />
           <Route path="/sweets-page" element={<Sweets />} />
           <Route path="/favorite-page" element={<Favorite />} />

@@ -73,7 +73,7 @@ const AddSweets = () => {
               placeholder="Enter sweet's type"
               required
             >
-              <option value="">Choose Sweet'ss Type</option>
+              <option value="">Choose Sweet's Type</option>
               <option value="Tiramisu">Tiramisu</option>
               <option value="Chocolate Strawberries">
                 Chocolate Strawberries

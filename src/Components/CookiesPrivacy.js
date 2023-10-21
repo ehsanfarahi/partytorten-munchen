@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 
+// React Icons
+import { BiCookie } from "react-icons/bi";
+
 function handleAcceptAll() {
   document
     .querySelector(".cookies-privacy-container")
@@ -9,6 +12,7 @@ function handleAcceptAll() {
 const CookiesPrivacy = () => {
   return (
     <div className="cookies-privacy-container">
+      <BiCookie className="cookie-icon" />
       <div className="main-container">
         <div className="top">
           <h3>We value your privacy!</h3>

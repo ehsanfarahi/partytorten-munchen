@@ -4,6 +4,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { MdKeyboardArrowUp } from "react-icons/md";
 
+// React Icon
+import {
+  TbLayoutSidebarLeftExpand,
+  TbLayoutSidebarRightExpand,
+} from "react-icons/tb";
+
 export default function Cake() {
   const [birthCakesChecked, setBirthCakesChecked] = useState(true);
   const [chocoCakesChecked, setChocoCakesChecked] = useState(true);
@@ -87,6 +93,22 @@ export default function Cake() {
     document
       .querySelector(".left-side-list-mobile .filter-container")
       .classList.toggle("display-flex");
+  }
+
+  const [displayFilterIcon, setDisplayFilterIcon] = useState(false);
+
+  useEffect(() => {
+    document
+      .querySelector(".left-side-list")
+      .classList.add("show-hide-ipad-size-filter");
+  }, []);
+
+  function handleFilterIcon() {
+    document
+      .querySelector(".left-side-list")
+      .classList.toggle("show-hide-ipad-size-filter");
+
+    setDisplayFilterIcon((e) => !e);
   }
 
   return (
@@ -469,6 +491,17 @@ export default function Cake() {
           </div>
         </div>
         <div className="content">
+          <div
+            onClick={handleFilterIcon}
+            className="show-hide-ipad-size-filter-icon"
+          >
+            {displayFilterIcon ? (
+              <TbLayoutSidebarRightExpand />
+            ) : (
+              <TbLayoutSidebarLeftExpand />
+            )}
+          </div>
+
           {birthCakesChecked ? (
             <div>
               {displayContent ? (

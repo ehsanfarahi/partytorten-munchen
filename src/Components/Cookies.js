@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { MdKeyboardArrowUp } from "react-icons/md";
 
 export default function Cookies() {
@@ -500,7 +498,7 @@ export default function Cookies() {
                         (fCookie) =>
                           fCookie.category === "Cookies" &&
                           fCookie.type === "Chocolate Cookies"
-                      ).length >= 5 ? (
+                      ).length >= 6 ? (
                         <>
                           <div
                             onClick={() => prev("one")}
@@ -588,7 +586,7 @@ export default function Cookies() {
                         (fCookie) =>
                           fCookie.category === "Cookies" &&
                           fCookie.type === "Honey Cookies"
-                      ).length >= 5 ? (
+                      ).length >= 6 ? (
                         <>
                           <div
                             onClick={() => prev("two")}
@@ -676,7 +674,7 @@ export default function Cookies() {
                         (fCookie) =>
                           fCookie.category === "Cookies" &&
                           fCookie.type === "Salty Cookies"
-                      ).length >= 5 ? (
+                      ).length >= 6 ? (
                         <>
                           {" "}
                           <div
@@ -765,7 +763,7 @@ export default function Cookies() {
                         (fCookie) =>
                           fCookie.category === "Cookies" &&
                           fCookie.type === "Home Made Cookies"
-                      ).length >= 5 ? (
+                      ).length >= 6 ? (
                         <>
                           <div
                             onClick={() => prev("four")}

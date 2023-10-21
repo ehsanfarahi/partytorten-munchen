@@ -2,12 +2,12 @@ import AddCake from "./AddCake";
 import AddCookies from "./AddCookies";
 import AddSweets from "./AddSweets";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import AdminSignup from "./AdminSignup";
 import EmployeeSignup from "./EmployeeSignup";
 import Orders from "./Orders";
 import ContactUsMessages from "./ContactUsMessages";
 import UsersList from "./UsersList";
+import CakesList from "./CakesList";
 
 export default function Admin() {
   const [actionWord, setActionWord] = useState("");
@@ -41,6 +41,8 @@ export default function Admin() {
       return <ContactUsMessages />;
     } else if (action === "users-list") {
       return <UsersList />;
+    } else if (action === "cakes-list") {
+      return <CakesList />;
     }
   }
 
@@ -70,6 +72,15 @@ export default function Admin() {
             )}
           </div>
           <div className="admin-pages">
+            <button onClick={() => setActionWord("cakes-list")}>
+              Cakes List
+            </button>
+            <button onClick={() => setActionWord("cookies-list")}>
+              Cookies List
+            </button>
+            <button onClick={() => setActionWord("sweets-list")}>
+              Sweets List
+            </button>
             <button onClick={() => setActionWord("orders")}>Orders</button>
             <button onClick={() => setActionWord("contact-us-messages")}>
               Messages
