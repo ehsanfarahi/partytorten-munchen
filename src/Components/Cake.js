@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { MdKeyboardArrowUp } from "react-icons/md";
 
 // React Icon
@@ -15,16 +13,6 @@ export default function Cake() {
   const [chocoCakesChecked, setChocoCakesChecked] = useState(true);
   const [fruitsCakesChecked, setFruitsCakesChecked] = useState(true);
   const [casualCakesChecked, setCasualCakesChecked] = useState(true);
-
-  const [allPrices, setAllPrices] = useState(false);
-  const [priceBelowFourty, setPriceBelowFourty] = useState(false);
-  const [priceBetweenFourtyFifty, setPriceBetweenFourtyFifty] = useState(true);
-  const [priceBetweenFiftySixty, setPriceBetweenFiftySixty] = useState(true);
-  const [priceBetweenSixtySeventy, setPriceBetweenSixtySeventy] =
-    useState(true);
-  const [priceAboveSeventy, setPriceAboveSeventy] = useState(true);
-
-  const [cakePrice, setCakePrice] = useState("");
 
   const handleBirthCakesCheck = (e) => {
     setBirthCakesChecked(!e);

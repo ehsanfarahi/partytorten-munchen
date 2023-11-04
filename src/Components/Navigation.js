@@ -8,7 +8,7 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 // React Icons
 import { HiOutlineUser } from "react-icons/hi";
 
-export default function Navigation() {
+export default function Navigation(props) {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -41,6 +41,8 @@ export default function Navigation() {
       return true;
     }
   }
+
+  const favTotal = localStorage.getItem("ptFav")?.split(",");
 
   return (
     <div className="navigation">
@@ -153,7 +155,9 @@ export default function Navigation() {
                 >
                   Favorite
                 </span>{" "}
-                <span className="fav-num">0</span>
+                <span className="fav-num">
+                  {favTotal ? favTotal.length - 1 : 0}
+                </span>
               </Link>
             </li>
             {getUserLoginData && (

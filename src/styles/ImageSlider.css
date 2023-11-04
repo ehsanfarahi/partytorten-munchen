@@ -60,7 +60,6 @@ body {
 .slide img:hover ~ .img-overlay {
   bottom: 0;
   transform: scale(1.05);
-  transition: 0.5s ease-in-out;
 }
 
 .img-overlay {
@@ -73,6 +72,7 @@ body {
   margin: 0 10px;
   border-radius: 15px;
   cursor: pointer;
+  transition: 0.5s ease-in-out;
 }
 
 .img-overlay p {

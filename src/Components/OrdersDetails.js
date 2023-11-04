@@ -64,6 +64,14 @@ export default function OrdersDetails() {
       alert("Assigned");
     }
   }
+
+  const options = {
+    weekday: "long",
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  };
+
   return (
     <div className="orders-details-container">
       <div className="main-container">
@@ -107,7 +115,8 @@ export default function OrdersDetails() {
                 <span>Price:</span> ${productData.price}
               </p>
               <p>
-                <span>Order date:</span> {ordersData.date}
+                <span>Order date:</span>{" "}
+                {new Date(ordersData.date).toLocaleDateString("de-DE", options)}
               </p>
             </div>
           </div>

@@ -702,11 +702,14 @@ body {
 .favorite-container .main-container .main-container-body {
   margin: 1.5rem;
   color: var(--nav-bar-color);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 2rem;
 }
 
 .favorite-container .main-container .main-container-body .display-item {
   border: 0.1rem solid var(--nav-bar-color);
-  width: 25%;
+
   border-radius: 0.6rem;
 }
 
@@ -1041,7 +1044,8 @@ body {
   width: 65%;
   margin: auto;
   position: relative;
-  padding-top: 10.5rem;
+  padding-top: 9rem;
+  padding-bottom: 1.5rem;
   display: flex;
 }
 
@@ -1678,6 +1682,7 @@ body {
   width: 75%;
   background-color: var(--container-color);
   margin-left: 0.5rem;
+  position: relative;
 }
 
 .my-account-container .content h3 {
@@ -1697,6 +1702,74 @@ body {
 }
 .my-account-container .content table thead tr th {
   padding: 0.5rem 0;
+}
+.my-account-container .content .action {
+  text-align: center;
+}
+.my-account-container .content .action .my-order-btn-view {
+  background-color: var(--nav-bar-color);
+  border-radius: 0.4rem;
+  padding: 0.2rem 1rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+.my-account-container .content .action .my-order-btn-cancel {
+  background-color: var(--nav-bar-color);
+  border-radius: 0.4rem;
+  padding: 0.2rem 1rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  cursor: pointer;
+}
+
+.view-my-order-container {
+  border: 0.2rem solid var(--nav-bar-color);
+  border-radius: 0.4rem;
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%);
+  background-color: var(--container-rightSide-color);
+  width: 80%;
+}
+.view-my-order-container .container-top {
+  border-bottom: 0.2rem solid var(--nav-bar-color);
+  display: flex;
+  justify-content: space-between;
+}
+.view-my-order-container .container-top .order-number {
+  color: var(--nav-bar-color);
+  font-weight: 700;
+  font-size: 1.5rem;
+  padding: 0.7rem;
+}
+.view-my-order-container .container-top .order-date {
+  color: var(--nav-bar-color);
+  font-weight: 700;
+  font-size: 1.5rem;
+  padding: 0.7rem;
+  display: flex;
+  align-items: center;
+}
+.view-my-order-container .container-top .order-date .close-container {
+  color: var(--nav-bar-color);
+  font-weight: 700;
+  font-size: 3rem;
+  cursor: pointer;
+  margin-left: 0.7rem;
+}
+.view-my-order-container .container-body {
+  display: flex;
+  padding: 1rem;
+}
+
+.view-my-order-container .container-body .container-body-right {
+  font-size: 2rem;
+  padding-left: 1.3rem;
 }
 /* My Account End */
 

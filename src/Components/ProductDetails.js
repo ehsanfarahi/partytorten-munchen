@@ -3,8 +3,6 @@ import { useParams } from "react-router-dom";
 
 import axios from "axios";
 
-import Navigation from "./Navigation";
-
 export default function ProductDetails() {
   // Get User IP Address
   const [ip, setIp] = useState("");
@@ -31,6 +29,10 @@ export default function ProductDetails() {
     );
   });
 
+  const [extrasOneCost, setExtrasOneCost] = useState(0);
+  const [extrasTwoCost, setExtrasTwoCost] = useState(0);
+  const [extrasThreeCost, setExtrasThreeCost] = useState(0);
+  const [extrasFourCost, setExtrasFourCost] = useState(0);
   const [extrasOne, setExtrasOne] = useState("");
   const [extrasTwo, setExtrasTwo] = useState("");
   const [extrasThree, setExtrasThree] = useState("");
@@ -64,11 +66,49 @@ export default function ProductDetails() {
     }
   }
 
-  const [favProductId, setFavProductId] = useState("");
+  const getFavData = localStorage.getItem("ptFav");
+  const favProId = [getFavData];
 
   function handleFavorite(id) {
-    localStorage.setItem("ptFav", productData._id);
-    <Navigation favID={id} />;
+    favProId.push(productData._id);
+    localStorage.setItem("ptFav", favProId);
+  }
+
+  function onChangeExtraOneCost(e) {
+    setExtrasOne(e.target.value);
+
+    if (e.target.checked) {
+      setExtrasOneCost(3.99);
+    } else {
+      setExtrasOneCost(0);
+    }
+  }
+  function onChangeExtraTwoCost(e) {
+    setExtrasTwo(e.target.value);
+
+    if (e.target.checked) {
+      setExtrasTwoCost(6.99);
+    } else {
+      setExtrasTwoCost(0);
+    }
+  }
+  function onChangeExtraThreeCost(e) {
+    setExtrasThree(e.target.value);
+
+    if (e.target.checked) {
+      setExtrasThreeCost(2.5);
+    } else {
+      setExtrasThreeCost(0);
+    }
+  }
+  function onChangeExtraFourCost(e) {
+    setExtrasFour(e.target.value);
+
+    if (e.target.checked) {
+      setExtrasFourCost(1.99);
+    } else {
+      setExtrasFourCost(0);
+    }
   }
 
   return (
@@ -98,13 +138,22 @@ export default function ProductDetails() {
               <p className="info-text">{productData.description}</p>
             </div>
           </div>
-          <p className="product-price">Price: ${productData.price}</p>
+          <p className="product-price">
+            Price: $
+            {Number(
+              parseFloat(productData.price) +
+                extrasOneCost +
+                extrasTwoCost +
+                extrasThreeCost +
+                extrasFourCost
+            ).toFixed(2)}
+          </p>
           <p className="product-weight">Weight: {productData.weight} kg</p>
           <div className="extra">
             <p>Extras</p>
             <div className="extra-form-control">
               <input
-                onChange={(e) => setExtrasOne(e.target.value)}
+                onChange={(e) => onChangeExtraOneCost(e)}
                 type="checkbox"
                 value="Inscription"
               />
@@ -112,7 +161,7 @@ export default function ProductDetails() {
             </div>
             <div className="extra-form-control">
               <input
-                onChange={(e) => setExtrasTwo(e.target.value)}
+                onChange={(e) => onChangeExtraTwoCost(e)}
                 type="checkbox"
                 value="Happy Birthday Glitter Cake Topper"
               />
@@ -120,7 +169,7 @@ export default function ProductDetails() {
             </div>
             <div className="extra-form-control">
               <input
-                onChange={(e) => setExtrasThree(e.target.value)}
+                onChange={(e) => onChangeExtraThreeCost(e)}
                 type="checkbox"
                 value="12x Metallic Candles"
               />
@@ -128,7 +177,7 @@ export default function ProductDetails() {
             </div>
             <div className="extra-form-control">
               <input
-                onChange={(e) => setExtrasFour(e.target.value)}
+                onChange={(e) => onChangeExtraFourCost(e)}
                 type="checkbox"
                 value="Ballons"
               />
