@@ -67,7 +67,11 @@ export default function ProductDetails() {
   }
 
   const getFavData = localStorage.getItem("ptFav");
-  const favProId = [getFavData];
+  let favProId = [];
+
+  if (getFavData) {
+    favProId = [getFavData];
+  }
 
   function handleFavorite(id) {
     favProId.push(productData._id);

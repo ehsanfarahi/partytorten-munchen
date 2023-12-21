@@ -32,7 +32,7 @@ const Favorite = () => {
 
     delete getFavData[favProId];
 
-    localStorage.setItem("ptFav", getFavData);
+    localStorage.setItem("ptFav", getFavData.split(","));
   }
 
   return (
@@ -40,7 +40,7 @@ const Favorite = () => {
       <div className="main-container">
         <div className="main-container-header">
           <p>
-            Favorites <span>({fav ? fav.length - 1 : 0})</span>
+            Favorites <span>({fav ? fav.length : 0})</span>
           </p>
           <div className="display"></div>
         </div>

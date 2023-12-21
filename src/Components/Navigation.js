@@ -156,7 +156,7 @@ export default function Navigation(props) {
                   Favorite
                 </span>{" "}
                 <span className="fav-num">
-                  {favTotal ? favTotal.length - 1 : 0}
+                  {favTotal ? favTotal.length : 0}
                 </span>
               </Link>
             </li>
